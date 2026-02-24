@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Getting Started — MSME Docs</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<header class="topbar">
+  <button class="hamburger" id="hamburger" aria-label="Toggle menu">&#9776;</button>
+  <a href="index.html" class="topbar-logo">
+    <div class="logo-icon">M</div>
+    <div>
+      <span class="logo-text">MSME Docs</span>
+      <span class="logo-sub">Embedded Systems Workshop</span>
+    </div>
+  </a>
+  <div class="topbar-spacer"></div>
+  <span class="topbar-badge">&#127979; Workshop</span>
+</header>
+
+<div class="overlay" id="overlay"></div>
+
+<aside class="sidebar" id="sidebar">
+  <nav>
+    <div class="sidebar-section">
+      <div class="sidebar-section-title">Navigation</div>
+      <ul>
+        <li><a href="index.html"><span class="nav-icon">&#127968;</span> Home</a></li>
+      </ul>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-section-title">Setup &amp; Tools</div>
+      <ul>
+        <li><a href="getting-started.html" class="active"><span class="nav-icon">&#128640;</span> Getting Started</a></li>
+        <li><a href="hardware.html"><span class="nav-icon">&#9881;</span> Hardware Reference</a></li>
+      </ul>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-section-title">Programming</div>
+      <ul>
+        <li><a href="programming.html"><span class="nav-icon">&#128187;</span> STM32 Programming</a></li>
+        <li><a href="sensors.html"><span class="nav-icon">&#128268;</span> Sensors &amp; Interfaces</a></li>
+      </ul>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-section-title">Advanced Topics</div>
+      <ul>
+        <li><a href="iot.html"><span class="nav-icon">&#127760;</span> IoT &amp; Cloud</a></li>
+        <li><a href="linux.html"><span class="nav-icon">&#128032;</span> Linux Tools</a></li>
+      </ul>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-section-title">Workshop</div>
+      <ul>
+        <li><a href="workshop.html"><span class="nav-icon">&#128203;</span> Workshop Materials</a></li>
+        <li><a href="projects.html"><span class="nav-icon">&#129302;</span> Projects</a></li>
+      </ul>
+    </div>
+  </nav>
+</aside>
+
+<div class="main-wrapper">
+  <main class="main-content">
+
+    <div class="page-header">
+      <div class="breadcrumb"><a href="index.html">Home</a> › Getting Started</div>
+      <h1>&#128640; Getting Started</h1>
+      <p>Set up your development environment before writing your first line of embedded code. This section covers VMware installation and STM32CubeIDE configuration.</p>
+    </div>
+
+    <!-- VMware -->
+    <div class="content-section" id="vmware">
+      <h2>&#128190; VMware Installation</h2>
+
+      <p>VMware Workstation Player provides a Linux virtual machine environment for embedded development — essential for running cross-compilers, OpenOCD, and Linux-based tools on a Windows host.</p>
+
+      <div class="callout info">
+        <span class="callout-icon">&#8505;</span>
+        <span>VMware Workstation Player (free for personal use) is recommended. Download it from <strong>vmware.com</strong> before following these steps.</span>
+      </div>
+
+      <h3>System Requirements</h3>
+      <table class="doc-table">
+        <thead><tr><th>Component</th><th>Minimum</th><th>Recommended</th></tr></thead>
+        <tbody>
+          <tr><td>CPU</td><td>64-bit dual-core</td><td>Quad-core with VT-x/AMD-V</td></tr>
+          <tr><td>RAM</td><td>4 GB</td><td>8 GB or more</td></tr>
+          <tr><td>Disk Space</td><td>20 GB free</td><td>40 GB+ for VM images</td></tr>
+          <tr><td>OS</td><td>Windows 10</td><td>Windows 10/11 64-bit</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Installation Steps</h3>
+      <ol class="step-list">
+        <li>Download the VMware Workstation Player installer from the official VMware website.</li>
+        <li>Run the <code>.exe</code> installer as Administrator. Accept the license agreement.</li>
+        <li>Choose an installation directory (default is fine). Keep <em>Enhanced Keyboard Driver</em> checked.</li>
+        <li>Complete the installation and restart your PC when prompted.</li>
+        <li>Launch VMware Player and click <strong>Create a New Virtual Machine</strong>.</li>
+        <li>Select an Ubuntu 22.04 LTS ISO as the installer image. Follow the wizard — set a username, password, and allocate at least 2 CPU cores and 4 GB RAM.</li>
+        <li>After the VM boots, install VMware Tools: <em>VM → Install VMware Tools</em> for clipboard sharing and folder access.</li>
+      </ol>
+
+      <h3>Enabling Virtualization in BIOS</h3>
+      <p>If VMware shows an error about hardware virtualization, enable <strong>Intel VT-x</strong> (or <strong>AMD-V</strong>) in your system BIOS:</p>
+      <ol class="step-list">
+        <li>Restart and enter BIOS (usually Del, F2, or F10 during boot).</li>
+        <li>Navigate to <em>Advanced → CPU Configuration</em>.</li>
+        <li>Enable <strong>Intel Virtualization Technology</strong> (or AMD SVM).</li>
+        <li>Save and exit. VMware should now start without errors.</li>
+      </ol>
+
+      <div class="callout success">
+        <span class="callout-icon">&#10003;</span>
+        <span>Once your Linux VM is running, proceed to install STM32CubeIDE inside it, or continue on your Windows host.</span>
+      </div>
+    </div>
+
+    <!-- STM32CubeIDE -->
+    <div class="content-section" id="cubeide">
+      <h2>&#128295; STM32CubeIDE Setup</h2>
+
+      <p>STM32CubeIDE is the official Eclipse-based IDE from STMicroelectronics. It bundles a GCC ARM cross-compiler, STM32CubeMX (for peripheral config), and a GDB-based debugger — everything needed in one package.</p>
+
+      <div class="callout info">
+        <span class="callout-icon">&#8505;</span>
+        <span>Download STM32CubeIDE from <strong>st.com/stm32cubeide</strong>. A free MyST account is required.</span>
+      </div>
+
+      <h3>Installation</h3>
+      <ol class="step-list">
+        <li>Download the STM32CubeIDE installer for your OS (Windows or Linux).</li>
+        <li>On Windows: run <code>st-stm32cubeide_X.Y.Z_setup.exe</code> as Administrator. Accept all defaults.</li>
+        <li>On Linux: make the installer executable and run it:<br>
+          <div class="code-block"><pre>chmod +x st-stm32cubeide_*.sh
+sudo ./st-stm32cubeide_*.sh</pre></div>
+        </li>
+        <li>Accept the license. The installer places the IDE under <code>/opt/st/stm32cubeide_X.Y.Z/</code> on Linux.</li>
+        <li>Launch STM32CubeIDE. Select a workspace directory and click <strong>Launch</strong>.</li>
+      </ol>
+
+      <h3>Creating Your First Project</h3>
+      <ol class="step-list">
+        <li>Go to <em>File → New → STM32 Project</em>.</li>
+        <li>In the MCU selector, search for <strong>STM32F446RE</strong> and select the NUCLEO-F446RE board.</li>
+        <li>Enter a project name (e.g., <code>HelloBlink</code>) and click <strong>Finish</strong>.</li>
+        <li>STM32CubeMX opens automatically. Configure peripherals here (e.g., enable GPIO PA5 for the onboard LED).</li>
+        <li>Click <strong>Project → Generate Code</strong> to create HAL-based source files.</li>
+        <li>Click the hammer icon (&#128296;) to build. The output console should show <code>Build Finished</code> with 0 errors.</li>
+      </ol>
+
+      <h3>Flashing &amp; Debugging</h3>
+      <ol class="step-list">
+        <li>Connect the NUCLEO board to your PC via the USB cable (CN1 — ST-LINK connector).</li>
+        <li>Click <strong>Run → Debug</strong> (or press <kbd>F11</kbd>). CubeIDE auto-detects the ST-LINK.</li>
+        <li>The code is flashed to the MCU. Execution pauses at <code>main()</code>.</li>
+        <li>Press <kbd>F8</kbd> (Resume) to run, or use step-over/step-into for debugging.</li>
+      </ol>
+
+      <div class="callout warning">
+        <span class="callout-icon">&#9888;</span>
+        <span>If the ST-LINK is not detected on Linux, add a udev rule: <code>sudo cp /opt/st/.../udev/rules.d/*.rules /etc/udev/rules.d/ &amp;&amp; sudo udevadm control --reload</code></span>
+      </div>
+
+      <h3>Useful Keyboard Shortcuts</h3>
+      <table class="doc-table">
+        <thead><tr><th>Action</th><th>Windows/Linux</th></tr></thead>
+        <tbody>
+          <tr><td>Build project</td><td><kbd>Ctrl+B</kbd></td></tr>
+          <tr><td>Open resource</td><td><kbd>Ctrl+Shift+R</kbd></td></tr>
+          <tr><td>Go to definition</td><td><kbd>F3</kbd></td></tr>
+          <tr><td>Quick fix</td><td><kbd>Ctrl+1</kbd></td></tr>
+          <tr><td>Format code</td><td><kbd>Ctrl+Shift+F</kbd></td></tr>
+          <tr><td>Run/Debug</td><td><kbd>F11</kbd></td></tr>
+          <tr><td>Resume</td><td><kbd>F8</kbd></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+  </main>
+  <footer class="site-footer">
+    <p>&#169; 2024 MSME Embedded Systems &amp; IoT Workshop</p>
+  </footer>
+</div>
+
+<script>
+  const hamburger = document.getElementById('hamburger');
+  const sidebar   = document.getElementById('sidebar');
+  const overlay   = document.getElementById('overlay');
+  hamburger.addEventListener('click', () => { sidebar.classList.toggle('open'); overlay.classList.toggle('active'); });
+  overlay.addEventListener('click',   () => { sidebar.classList.remove('open'); overlay.classList.remove('active'); });
+</script>
+</body>
+</html>
