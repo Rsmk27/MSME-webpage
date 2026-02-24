@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Projects — MSME Docs</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<header class="topbar">
+  <button class="hamburger" id="hamburger" aria-label="Toggle menu">&#9776;</button>
+  <a href="index.html" class="topbar-logo">
+    <div class="logo-icon">M</div>
+    <div>
+      <span class="logo-text">MSME Docs</span>
+      <span class="logo-sub">Embedded Systems Workshop</span>
+    </div>
+  </a>
+  <div class="topbar-spacer"></div>
+  <span class="topbar-badge">&#127979; Workshop</span>
+</header>
+
+<div class="overlay" id="overlay"></div>
+
+<aside class="sidebar" id="sidebar">
+  <nav>
+    <div class="sidebar-section">
+      <div class="sidebar-section-title">Navigation</div>
+      <ul>
+        <li><a href="index.html"><span class="nav-icon">&#127968;</span> Home</a></li>
+      </ul>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-section-title">Setup &amp; Tools</div>
+      <ul>
+        <li><a href="getting-started.html"><span class="nav-icon">&#128640;</span> Getting Started</a></li>
+        <li><a href="hardware.html"><span class="nav-icon">&#9881;</span> Hardware Reference</a></li>
+      </ul>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-section-title">Programming</div>
+      <ul>
+        <li><a href="programming.html"><span class="nav-icon">&#128187;</span> STM32 Programming</a></li>
+        <li><a href="sensors.html"><span class="nav-icon">&#128268;</span> Sensors &amp; Interfaces</a></li>
+      </ul>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-section-title">Advanced Topics</div>
+      <ul>
+        <li><a href="iot.html"><span class="nav-icon">&#127760;</span> IoT &amp; Cloud</a></li>
+        <li><a href="linux.html"><span class="nav-icon">&#128032;</span> Linux Tools</a></li>
+      </ul>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-section-title">Workshop</div>
+      <ul>
+        <li><a href="workshop.html"><span class="nav-icon">&#128203;</span> Workshop Materials</a></li>
+        <li><a href="projects.html" class="active"><span class="nav-icon">&#129302;</span> Projects</a></li>
+      </ul>
+    </div>
+  </nav>
+</aside>
+
+<div class="main-wrapper">
+  <main class="main-content">
+
+    <div class="page-header">
+      <div class="breadcrumb"><a href="index.html">Home</a> › Projects</div>
+      <h1>&#129302; Projects</h1>
+      <p>Capstone project — a voice-controlled robotic arm built with STM32, servo motors, and a voice recognition module.</p>
+    </div>
+
+    <!-- Voice Controlled Robot Arm -->
+    <div class="content-section" id="robo-arm">
+      <h2>&#127897; Voice Controlled Robotic Arm</h2>
+
+      <p>The capstone project for this workshop is a <strong>voice-controlled robotic arm</strong>. A voice recognition module captures spoken commands, which are decoded by the STM32 microcontroller and translated into servo motor movements to position the arm.</p>
+
+      <div class="callout info">
+        <span class="callout-icon">&#8505;</span>
+        <span>This project integrates UART communication, PWM for servo control, and structured command parsing — bringing together skills from every section of the workshop.</span>
+      </div>
+
+      <h3>Bill of Materials</h3>
+      <table class="doc-table">
+        <thead><tr><th>#</th><th>Component</th><th>Qty</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>NUCLEO-F446RE board</td><td>1</td><td>Main controller</td></tr>
+          <tr><td>2</td><td>MG996R Servo Motor</td><td>4</td><td>Base, shoulder, elbow, wrist</td></tr>
+          <tr><td>3</td><td>SG90 Micro Servo</td><td>1</td><td>Gripper</td></tr>
+          <tr><td>4</td><td>Elechouse Voice Recognition Module V3</td><td>1</td><td>UART voice I/O</td></tr>
+          <tr><td>5</td><td>5 V, 3 A Power Supply</td><td>1</td><td>Servo power (separate from MCU)</td></tr>
+          <tr><td>6</td><td>Robotic Arm Frame Kit</td><td>1</td><td>Laser-cut or 3D-printed chassis</td></tr>
+          <tr><td>7</td><td>Breadboard &amp; Jumper Wires</td><td>1 set</td><td>Prototyping connections</td></tr>
+          <tr><td>8</td><td>LM2596 Buck Converter (optional)</td><td>1</td><td>Regulate 12 V→5 V for servos</td></tr>
+        </tbody>
+      </table>
+
+      <h3>System Architecture</h3>
+      <table class="doc-table">
+        <thead><tr><th>Module</th><th>Interface</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td>Voice Recognition</td><td>UART1 (PA9/PA10)</td><td>Sends command codes (1-byte) when a trained word is heard</td></tr>
+          <tr><td>Servo 1 — Base</td><td>TIM1 CH1 (PA8)</td><td>Rotates arm base left/right</td></tr>
+          <tr><td>Servo 2 — Shoulder</td><td>TIM1 CH2 (PA9)†</td><td>Lifts/lowers the upper arm</td></tr>
+          <tr><td>Servo 3 — Elbow</td><td>TIM2 CH1 (PA0)</td><td>Bends the forearm</td></tr>
+          <tr><td>Servo 4 — Wrist</td><td>TIM2 CH2 (PA1)</td><td>Rotates the wrist</td></tr>
+          <tr><td>Servo 5 — Gripper</td><td>TIM3 CH1 (PA6)</td><td>Opens/closes the gripper</td></tr>
+          <tr><td>Status LED</td><td>PA5 (GPIO)</td><td>Blinks on command recognition</td></tr>
+        </tbody>
+      </table>
+      <p><small>† If PA9 is shared with UART1 TX, remap servo 2 to TIM1 CH3 (PA10 or PB13).</small></p>
+
+      <h3>Servo PWM Configuration</h3>
+      <p>Standard hobby servos use a 50 Hz PWM signal. The pulse width controls the angle:</p>
+      <table class="doc-table">
+        <thead><tr><th>Pulse Width</th><th>Servo Position</th></tr></thead>
+        <tbody>
+          <tr><td>1.0 ms (5% duty)</td><td>0°</td></tr>
+          <tr><td>1.5 ms (7.5% duty)</td><td>90° (centre)</td></tr>
+          <tr><td>2.0 ms (10% duty)</td><td>180°</td></tr>
+        </tbody>
+      </table>
+
+      <h3>STM32CubeMX PWM Setup</h3>
+      <ol class="step-list">
+        <li>Open the <code>.ioc</code> file → <em>Timers → TIM1</em>.</li>
+        <li>Set Channel 1 to <em>PWM Generation CH1</em>.</li>
+        <li>In Parameter Settings: Prescaler = 179, Counter Period = 19999 → gives 50 Hz at 180 MHz clock.</li>
+        <li>Generate code. Call <code>HAL_TIM_PWM_Start(&amp;htim1, TIM_CHANNEL_1)</code> in <code>main()</code>.</li>
+      </ol>
+
+      <div class="code-block"><pre><span class="cm">/* Set servo angle: 0–180 degrees */</span>
+<span class="kw">void</span> <span class="fn">Servo_SetAngle</span>(TIM_HandleTypeDef *htim, <span class="kw">uint32_t</span> channel, <span class="kw">uint8_t</span> angle)
+{
+  <span class="cm">/* Map 0-180° to pulse width 1000-2000 µs (CCR 1000-2000 at 1 µs resolution) */</span>
+  <span class="kw">uint32_t</span> pulse = <span class="num">1000</span> + ((<span class="kw">uint32_t</span>)angle * <span class="num">1000</span> / <span class="num">180</span>);
+  __HAL_TIM_SET_COMPARE(htim, channel, pulse);
+}</pre></div>
+
+      <h3>Voice Recognition Module</h3>
+      <p>The Elechouse V3 module supports up to 80 trained voice commands. Commands are sent to the STM32 as single-byte identifiers over UART.</p>
+
+      <div class="code-block"><pre><span class="cm">/* Recognised voice command codes */</span>
+<span class="pp">#define</span> CMD_BASE_LEFT    <span class="num">0x01</span>
+<span class="pp">#define</span> CMD_BASE_RIGHT   <span class="num">0x02</span>
+<span class="pp">#define</span> CMD_ARM_UP       <span class="num">0x03</span>
+<span class="pp">#define</span> CMD_ARM_DOWN     <span class="num">0x04</span>
+<span class="pp">#define</span> CMD_GRIP_OPEN    <span class="num">0x05</span>
+<span class="pp">#define</span> CMD_GRIP_CLOSE   <span class="num">0x06</span>
+<span class="pp">#define</span> CMD_HOME         <span class="num">0x07</span>
+
+<span class="kw">void</span> <span class="fn">ProcessVoiceCommand</span>(<span class="kw">uint8_t</span> cmd)
+{
+  <span class="kw">switch</span> (cmd)
+  {
+    <span class="kw">case</span> CMD_BASE_LEFT:
+      <span class="fn">Servo_SetAngle</span>(&amp;htim1, TIM_CHANNEL_1, base_angle - <span class="num">10</span>); <span class="kw">break</span>;
+    <span class="kw">case</span> CMD_BASE_RIGHT:
+      <span class="fn">Servo_SetAngle</span>(&amp;htim1, TIM_CHANNEL_1, base_angle + <span class="num">10</span>); <span class="kw">break</span>;
+    <span class="kw">case</span> CMD_GRIP_OPEN:
+      <span class="fn">Servo_SetAngle</span>(&amp;htim3, TIM_CHANNEL_1, <span class="num">0</span>);   <span class="kw">break</span>;
+    <span class="kw">case</span> CMD_GRIP_CLOSE:
+      <span class="fn">Servo_SetAngle</span>(&amp;htim3, TIM_CHANNEL_1, <span class="num">90</span>);  <span class="kw">break</span>;
+    <span class="kw">case</span> CMD_HOME:
+      <span class="fn">Arm_GoHome</span>(); <span class="kw">break</span>;
+    <span class="kw">default</span>: <span class="kw">break</span>;
+  }
+  <span class="fn">HAL_GPIO_TogglePin</span>(LD2_GPIO_Port, LD2_Pin); <span class="cm">/* blink LED */</span>
+}</pre></div>
+
+      <h3>Main Loop</h3>
+      <div class="code-block"><pre><span class="kw">uint8_t</span> voiceCmd = <span class="num">0</span>;
+
+<span class="cm">/* USER CODE BEGIN WHILE */</span>
+<span class="kw">while</span> (<span class="num">1</span>)
+{
+  <span class="kw">if</span> (<span class="fn">HAL_UART_Receive</span>(&amp;huart1, &amp;voiceCmd, <span class="num">1</span>, <span class="num">10</span>) == HAL_OK)
+  {
+    <span class="fn">ProcessVoiceCommand</span>(voiceCmd);
+  }
+}</pre></div>
+
+      <h3>Voice Command Training</h3>
+      <ol class="step-list">
+        <li>Connect the voice module to PC via USB-UART adapter. Use the Elechouse PC software to enter training mode.</li>
+        <li>Assign a command slot (e.g., slot 1) and speak the wake word three times: <em>"Turn left"</em>.</li>
+        <li>Repeat for all commands. Upload the trained model to the module.</li>
+        <li>Connect the module to STM32 UART1 (TX → PA10, RX → PA9, VCC → 3.3 V, GND → GND).</li>
+        <li>Power on the system. Speak a trained command — the STM32 should receive the command byte and move the servo.</li>
+      </ol>
+
+      <div class="callout success">
+        <span class="callout-icon">&#127881;</span>
+        <span>Congratulations! You've built a voice-controlled robotic arm — combining GPIO, PWM, UART, and embedded C programming skills from throughout the workshop.</span>
+      </div>
+
+      <h3>Possible Extensions</h3>
+      <ul>
+        <li>Add OLED display to show the last received voice command.</li>
+        <li>Log arm movements via UART to a PC terminal for replay.</li>
+        <li>Publish arm state to Rightech Cloud for remote monitoring.</li>
+        <li>Add a teach-and-playback mode using FreeRTOS tasks.</li>
+        <li>Replace voice module with ESP32 + Google Speech API for unlimited vocabulary.</li>
+      </ul>
+    </div>
+
+  </main>
+  <footer class="site-footer">
+    <p>&#169; 2024 MSME Embedded Systems &amp; IoT Workshop</p>
+  </footer>
+</div>
+
+<script>
+  const hamburger = document.getElementById('hamburger');
+  const sidebar   = document.getElementById('sidebar');
+  const overlay   = document.getElementById('overlay');
+  hamburger.addEventListener('click', () => { sidebar.classList.toggle('open'); overlay.classList.toggle('active'); });
+  overlay.addEventListener('click',   () => { sidebar.classList.remove('open'); overlay.classList.remove('active'); });
+</script>
+</body>
+</html>

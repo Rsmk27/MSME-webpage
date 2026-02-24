@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Linux Tools — MSME Docs</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<header class="topbar">
+  <button class="hamburger" id="hamburger" aria-label="Toggle menu">&#9776;</button>
+  <a href="index.html" class="topbar-logo">
+    <div class="logo-icon">M</div>
+    <div>
+      <span class="logo-text">MSME Docs</span>
+      <span class="logo-sub">Embedded Systems Workshop</span>
+    </div>
+  </a>
+  <div class="topbar-spacer"></div>
+  <span class="topbar-badge">&#127979; Workshop</span>
+</header>
+
+<div class="overlay" id="overlay"></div>
+
+<aside class="sidebar" id="sidebar">
+  <nav>
+    <div class="sidebar-section">
+      <div class="sidebar-section-title">Navigation</div>
+      <ul>
+        <li><a href="index.html"><span class="nav-icon">&#127968;</span> Home</a></li>
+      </ul>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-section-title">Setup &amp; Tools</div>
+      <ul>
+        <li><a href="getting-started.html"><span class="nav-icon">&#128640;</span> Getting Started</a></li>
+        <li><a href="hardware.html"><span class="nav-icon">&#9881;</span> Hardware Reference</a></li>
+      </ul>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-section-title">Programming</div>
+      <ul>
+        <li><a href="programming.html"><span class="nav-icon">&#128187;</span> STM32 Programming</a></li>
+        <li><a href="sensors.html"><span class="nav-icon">&#128268;</span> Sensors &amp; Interfaces</a></li>
+      </ul>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-section-title">Advanced Topics</div>
+      <ul>
+        <li><a href="iot.html"><span class="nav-icon">&#127760;</span> IoT &amp; Cloud</a></li>
+        <li><a href="linux.html" class="active"><span class="nav-icon">&#128032;</span> Linux Tools</a></li>
+      </ul>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-section-title">Workshop</div>
+      <ul>
+        <li><a href="workshop.html"><span class="nav-icon">&#128203;</span> Workshop Materials</a></li>
+        <li><a href="projects.html"><span class="nav-icon">&#129302;</span> Projects</a></li>
+      </ul>
+    </div>
+  </nav>
+</aside>
+
+<div class="main-wrapper">
+  <main class="main-content">
+
+    <div class="page-header">
+      <div class="breadcrumb"><a href="index.html">Home</a> › Linux Tools</div>
+      <h1>&#128032; Linux Tools</h1>
+      <p>Essential Linux commands and terminal productivity tricks for embedded software development — navigating the filesystem, managing processes, and working with serial devices.</p>
+    </div>
+
+    <!-- Linux Commands -->
+    <div class="content-section" id="commands">
+      <h2>&#128196; Linux Commands Reference</h2>
+
+      <h3>File &amp; Directory Operations</h3>
+      <table class="doc-table">
+        <thead><tr><th>Command</th><th>Description</th><th>Example</th></tr></thead>
+        <tbody>
+          <tr><td><code>ls</code></td><td>List directory contents</td><td><code>ls -la /home/user</code></td></tr>
+          <tr><td><code>cd</code></td><td>Change directory</td><td><code>cd ~/projects</code></td></tr>
+          <tr><td><code>pwd</code></td><td>Print working directory</td><td><code>pwd</code></td></tr>
+          <tr><td><code>mkdir</code></td><td>Create directory</td><td><code>mkdir -p src/lib</code></td></tr>
+          <tr><td><code>rm</code></td><td>Remove files/directories</td><td><code>rm -rf build/</code></td></tr>
+          <tr><td><code>cp</code></td><td>Copy files</td><td><code>cp main.c backup/</code></td></tr>
+          <tr><td><code>mv</code></td><td>Move or rename</td><td><code>mv old.c new.c</code></td></tr>
+          <tr><td><code>find</code></td><td>Search for files</td><td><code>find . -name "*.c"</code></td></tr>
+          <tr><td><code>cat</code></td><td>Show file contents</td><td><code>cat main.c</code></td></tr>
+          <tr><td><code>less</code></td><td>Scroll through file</td><td><code>less output.log</code></td></tr>
+          <tr><td><code>head / tail</code></td><td>Show first/last lines</td><td><code>tail -f syslog</code></td></tr>
+          <tr><td><code>grep</code></td><td>Search text in files</td><td><code>grep -rn "HAL_Init" src/</code></td></tr>
+          <tr><td><code>chmod</code></td><td>Change file permissions</td><td><code>chmod +x flash.sh</code></td></tr>
+          <tr><td><code>chown</code></td><td>Change file owner</td><td><code>chown user:group file</code></td></tr>
+        </tbody>
+      </table>
+
+      <h3>Package Management (Debian/Ubuntu)</h3>
+      <table class="doc-table">
+        <thead><tr><th>Command</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td><code>sudo apt update</code></td><td>Refresh package lists</td></tr>
+          <tr><td><code>sudo apt upgrade</code></td><td>Upgrade all installed packages</td></tr>
+          <tr><td><code>sudo apt install &lt;pkg&gt;</code></td><td>Install a package</td></tr>
+          <tr><td><code>sudo apt remove &lt;pkg&gt;</code></td><td>Remove a package</td></tr>
+          <tr><td><code>apt search &lt;term&gt;</code></td><td>Search for a package</td></tr>
+          <tr><td><code>dpkg -l</code></td><td>List installed packages</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Process Management</h3>
+      <table class="doc-table">
+        <thead><tr><th>Command</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td><code>ps aux</code></td><td>List all running processes</td></tr>
+          <tr><td><code>top</code> / <code>htop</code></td><td>Interactive process monitor</td></tr>
+          <tr><td><code>kill &lt;PID&gt;</code></td><td>Terminate process by PID</td></tr>
+          <tr><td><code>killall &lt;name&gt;</code></td><td>Kill all processes by name</td></tr>
+          <tr><td><code>bg</code> / <code>fg</code></td><td>Send to background / foreground</td></tr>
+          <tr><td><code>nohup cmd &amp;</code></td><td>Run command immune to hangups</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Serial Port &amp; Embedded Tools</h3>
+      <table class="doc-table">
+        <thead><tr><th>Command</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td><code>ls /dev/tty*</code></td><td>List serial/USB devices</td></tr>
+          <tr><td><code>dmesg | grep tty</code></td><td>Check kernel messages for serial</td></tr>
+          <tr><td><code>screen /dev/ttyACM0 115200</code></td><td>Open serial terminal (Ctrl+A K to quit)</td></tr>
+          <tr><td><code>minicom -D /dev/ttyACM0</code></td><td>Full-featured serial terminal</td></tr>
+          <tr><td><code>stty -F /dev/ttyACM0 115200</code></td><td>Configure serial port baud rate</td></tr>
+          <tr><td><code>openocd -f board/st_nucleo_f4.cfg</code></td><td>Start OpenOCD debug server</td></tr>
+          <tr><td><code>arm-none-eabi-size firmware.elf</code></td><td>Show firmware size breakdown</td></tr>
+          <tr><td><code>arm-none-eabi-objdump -d fw.elf</code></td><td>Disassemble firmware</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Networking &amp; SSH</h3>
+      <table class="doc-table">
+        <thead><tr><th>Command</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td><code>ip addr</code></td><td>Show network interfaces and IPs</td></tr>
+          <tr><td><code>ping &lt;host&gt;</code></td><td>Test network connectivity</td></tr>
+          <tr><td><code>ssh user@host</code></td><td>Secure remote login</td></tr>
+          <tr><td><code>scp file user@host:/path</code></td><td>Copy file to remote host</td></tr>
+          <tr><td><code>curl -s &lt;url&gt;</code></td><td>HTTP request / download</td></tr>
+          <tr><td><code>wget &lt;url&gt;</code></td><td>Download file from URL</td></tr>
+          <tr><td><code>nmap -sn 192.168.1.0/24</code></td><td>Scan network for live hosts</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Terminal Tricks -->
+    <div class="content-section" id="tricks">
+      <h2>&#127381; Linux Terminal Tricks</h2>
+
+      <h3>Navigation &amp; History</h3>
+      <table class="doc-table">
+        <thead><tr><th>Shortcut / Command</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td><kbd>Tab</kbd></td><td>Auto-complete command or filename</td></tr>
+          <tr><td><kbd>↑</kbd> / <kbd>↓</kbd></td><td>Scroll through command history</td></tr>
+          <tr><td><kbd>Ctrl+R</kbd></td><td>Reverse history search</td></tr>
+          <tr><td><kbd>Ctrl+A</kbd></td><td>Jump to beginning of line</td></tr>
+          <tr><td><kbd>Ctrl+E</kbd></td><td>Jump to end of line</td></tr>
+          <tr><td><kbd>Ctrl+U</kbd></td><td>Clear line to the left of cursor</td></tr>
+          <tr><td><kbd>Ctrl+K</kbd></td><td>Clear line to the right of cursor</td></tr>
+          <tr><td><kbd>Ctrl+W</kbd></td><td>Delete previous word</td></tr>
+          <tr><td><kbd>Ctrl+L</kbd></td><td>Clear terminal screen</td></tr>
+          <tr><td><code>!!</code></td><td>Repeat last command</td></tr>
+          <tr><td><code>!cmd</code></td><td>Run most recent command starting with <em>cmd</em></td></tr>
+          <tr><td><code>history | grep make</code></td><td>Search history for "make"</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Useful One-Liners</h3>
+      <div class="code-block"><pre><span class="cm"># Watch a file in real-time</span>
+tail -f /var/log/syslog
+
+<span class="cm"># Find and replace in all .c files</span>
+sed -i 's/OLD_NAME/NEW_NAME/g' *.c
+
+<span class="cm"># Count lines of code in src/ directory</span>
+find src/ -name "*.c" -o -name "*.h" | xargs wc -l
+
+<span class="cm"># Monitor serial output with timestamp</span>
+cat /dev/ttyACM0 | while IFS= read -r line; do echo "$(date '+%T.%N') $line"; done
+
+<span class="cm"># Check disk usage, sorted by size</span>
+du -sh * | sort -rh | head -20
+
+<span class="cm"># Kill all processes matching a pattern</span>
+ps aux | grep openocd | awk '{print $2}' | xargs kill
+
+<span class="cm"># Create a timestamped backup</span>
+cp firmware.bin firmware_$(date +%Y%m%d_%H%M).bin
+
+<span class="cm"># Generate a compile_commands.json for clangd</span>
+bear -- make all</pre></div>
+
+      <h3>tmux — Terminal Multiplexer</h3>
+      <p><strong>tmux</strong> lets you split the terminal, run multiple sessions, and keep sessions alive over SSH.</p>
+      <table class="doc-table">
+        <thead><tr><th>Command</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td><code>tmux new -s dev</code></td><td>Start new session named "dev"</td></tr>
+          <tr><td><code>tmux attach -t dev</code></td><td>Re-attach to session "dev"</td></tr>
+          <tr><td><kbd>Ctrl+B %</kbd></td><td>Split pane vertically</td></tr>
+          <tr><td><kbd>Ctrl+B "</kbd></td><td>Split pane horizontally</td></tr>
+          <tr><td><kbd>Ctrl+B ←→↑↓</kbd></td><td>Switch between panes</td></tr>
+          <tr><td><kbd>Ctrl+B D</kbd></td><td>Detach from session (keep running)</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Aliases — Save Keystrokes</h3>
+      <p>Add these to your <code>~/.bashrc</code> or <code>~/.bash_aliases</code>:</p>
+      <div class="code-block"><pre><span class="cm"># Build and flash shortcut</span>
+alias build='make -j$(nproc)'
+alias flash='openocd -f board/st_nucleo_f4.cfg -c "program firmware.elf verify reset exit"'
+
+<span class="cm"># Serial terminal</span>
+alias serial='minicom -D /dev/ttyACM0 -b 115200'
+
+<span class="cm"># Quick git status</span>
+alias gs='git status'
+alias gd='git diff'
+alias gl='git log --oneline -10'</pre></div>
+
+      <div class="callout info">
+        <span class="callout-icon">&#8505;</span>
+        <span>Run <code>source ~/.bashrc</code> after editing to apply changes immediately without restarting the terminal.</span>
+      </div>
+    </div>
+
+  </main>
+  <footer class="site-footer">
+    <p>&#169; 2024 MSME Embedded Systems &amp; IoT Workshop</p>
+  </footer>
+</div>
+
+<script>
+  const hamburger = document.getElementById('hamburger');
+  const sidebar   = document.getElementById('sidebar');
+  const overlay   = document.getElementById('overlay');
+  hamburger.addEventListener('click', () => { sidebar.classList.toggle('open'); overlay.classList.toggle('active'); });
+  overlay.addEventListener('click',   () => { sidebar.classList.remove('open'); overlay.classList.remove('active'); });
+</script>
+</body>
+</html>

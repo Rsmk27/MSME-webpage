@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IoT &amp; Cloud — MSME Docs</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<header class="topbar">
+  <button class="hamburger" id="hamburger" aria-label="Toggle menu">&#9776;</button>
+  <a href="index.html" class="topbar-logo">
+    <div class="logo-icon">M</div>
+    <div>
+      <span class="logo-text">MSME Docs</span>
+      <span class="logo-sub">Embedded Systems Workshop</span>
+    </div>
+  </a>
+  <div class="topbar-spacer"></div>
+  <span class="topbar-badge">&#127979; Workshop</span>
+</header>
+
+<div class="overlay" id="overlay"></div>
+
+<aside class="sidebar" id="sidebar">
+  <nav>
+    <div class="sidebar-section">
+      <div class="sidebar-section-title">Navigation</div>
+      <ul>
+        <li><a href="index.html"><span class="nav-icon">&#127968;</span> Home</a></li>
+      </ul>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-section-title">Setup &amp; Tools</div>
+      <ul>
+        <li><a href="getting-started.html"><span class="nav-icon">&#128640;</span> Getting Started</a></li>
+        <li><a href="hardware.html"><span class="nav-icon">&#9881;</span> Hardware Reference</a></li>
+      </ul>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-section-title">Programming</div>
+      <ul>
+        <li><a href="programming.html"><span class="nav-icon">&#128187;</span> STM32 Programming</a></li>
+        <li><a href="sensors.html"><span class="nav-icon">&#128268;</span> Sensors &amp; Interfaces</a></li>
+      </ul>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-section-title">Advanced Topics</div>
+      <ul>
+        <li><a href="iot.html" class="active"><span class="nav-icon">&#127760;</span> IoT &amp; Cloud</a></li>
+        <li><a href="linux.html"><span class="nav-icon">&#128032;</span> Linux Tools</a></li>
+      </ul>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-section-title">Workshop</div>
+      <ul>
+        <li><a href="workshop.html"><span class="nav-icon">&#128203;</span> Workshop Materials</a></li>
+        <li><a href="projects.html"><span class="nav-icon">&#129302;</span> Projects</a></li>
+      </ul>
+    </div>
+  </nav>
+</aside>
+
+<div class="main-wrapper">
+  <main class="main-content">
+
+    <div class="page-header">
+      <div class="breadcrumb"><a href="index.html">Home</a> › IoT &amp; Cloud</div>
+      <h1>&#127760; IoT &amp; Cloud</h1>
+      <p>Connect your STM32-based device to the internet, publish sensor data via MQTT, and visualize it on the Rightech IoT Cloud platform.</p>
+    </div>
+
+    <!-- Rightech Cloud -->
+    <div class="content-section" id="rightech">
+      <h2>&#9729; Rightech IoT Cloud</h2>
+
+      <p>Rightech IoT Cloud is a platform-as-a-service (PaaS) that provides device management, real-time dashboards, automation rules, and MQTT broker connectivity — all without building backend infrastructure.</p>
+
+      <h3>Key Features</h3>
+      <div class="card-grid" style="margin-bottom:0;">
+        <div class="card">
+          <div class="card-icon blue">&#128202;</div>
+          <h3>Real-time Dashboard</h3>
+          <p>Drag-and-drop widgets: gauges, charts, maps, and toggles for live sensor data.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon green">&#128296;</div>
+          <h3>MQTT Broker</h3>
+          <p>Built-in MQTT broker. Devices connect and publish/subscribe to topics seamlessly.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon orange">&#9889;</div>
+          <h3>Automation Rules</h3>
+          <p>Trigger actions (emails, webhooks, commands) when sensor values cross thresholds.</p>
+        </div>
+      </div>
+
+      <h3>Getting Started with Rightech</h3>
+      <ol class="step-list">
+        <li>Create a free account at <strong>rightech.io</strong>.</li>
+        <li>In the dashboard, click <strong>Objects → Add Object</strong> to register your STM32 device.</li>
+        <li>Note the <strong>Client ID</strong>, <strong>MQTT broker address</strong> (<code>dev.rightech.io</code>), and port (<code>1883</code>).</li>
+        <li>Use MQTT to connect your device using the Client ID as the username.</li>
+        <li>Publish sensor readings to a topic such as <code>base/sensors/temperature</code>.</li>
+        <li>Add a chart widget on the dashboard and bind it to the temperature topic.</li>
+      </ol>
+
+      <h3>MQTT Connection Parameters</h3>
+      <table class="doc-table">
+        <thead><tr><th>Parameter</th><th>Value</th></tr></thead>
+        <tbody>
+          <tr><td>Broker Host</td><td><code>dev.rightech.io</code></td></tr>
+          <tr><td>Port</td><td><code>1883</code> (TCP) / <code>8883</code> (TLS)</td></tr>
+          <tr><td>Client ID</td><td>Your Rightech device ID</td></tr>
+          <tr><td>Username</td><td>Your Rightech device ID</td></tr>
+          <tr><td>Password</td><td>(empty)</td></tr>
+          <tr><td>Keep-alive</td><td>60 s</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Example — Publishing BME280 Data via MQTT</h3>
+      <p>If using an ESP32 co-processor or Linux gateway alongside the STM32, you can use the Paho MQTT library:</p>
+      <div class="code-block"><pre><span class="pp"># Python example (gateway/Raspberry Pi)</span>
+<span class="kw">import</span> paho.mqtt.client <span class="kw">as</span> mqtt
+<span class="kw">import</span> json, time
+
+client = mqtt.Client(client_id=<span class="str">"&lt;your-device-id&gt;"</span>)
+client.connect(<span class="str">"dev.rightech.io"</span>, <span class="num">1883</span>, <span class="num">60</span>)
+
+<span class="kw">while</span> True:
+    payload = json.dumps({<span class="str">"temperature"</span>: <span class="num">25.4</span>, <span class="str">"humidity"</span>: <span class="num">60.1</span>})
+    client.publish(<span class="str">"base/sensors/temperature"</span>, <span class="num">25.4</span>)
+    client.publish(<span class="str">"base/sensors/humidity"</span>, <span class="num">60.1</span>)
+    time.sleep(<span class="num">5</span>)</pre></div>
+
+      <div class="callout info">
+        <span class="callout-icon">&#8505;</span>
+        <span>For direct MQTT from STM32, use an ESP8266/ESP32 AT-command Wi-Fi module connected to UART, or the ESP32 with Arduino-based MQTT libraries over its native Wi-Fi stack.</span>
+      </div>
+    </div>
+
+    <!-- Build IoT App -->
+    <div class="content-section" id="build-iot">
+      <h2>&#128295; Building an IoT Application</h2>
+
+      <p>A complete IoT application has three tiers: the <strong>device</strong> (STM32 + sensors), the <strong>connectivity layer</strong> (Wi-Fi/cellular + MQTT), and the <strong>cloud platform</strong> (Rightech dashboard + rules).</p>
+
+      <h3>IoT Application Architecture</h3>
+      <table class="doc-table">
+        <thead><tr><th>Layer</th><th>Technology</th><th>Role</th></tr></thead>
+        <tbody>
+          <tr><td>Sensing</td><td>STM32F446RE + BME280/RFID</td><td>Collect physical data</td></tr>
+          <tr><td>Connectivity</td><td>ESP8266 (AT commands) / ESP32</td><td>Wi-Fi + MQTT client</td></tr>
+          <tr><td>Transport</td><td>MQTT over TCP/IP</td><td>Lightweight publish/subscribe messaging</td></tr>
+          <tr><td>Cloud Platform</td><td>Rightech IoT Cloud</td><td>Broker, storage, dashboards, alerts</td></tr>
+          <tr><td>Application</td><td>Rightech dashboard widgets</td><td>Visualize, automate, alert</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Step-by-Step Workflow</h3>
+      <ol class="step-list">
+        <li><strong>Sense:</strong> STM32 reads sensor data (temperature, humidity, RFID UID) periodically.</li>
+        <li><strong>Format:</strong> Package data into a JSON or CSV payload string.</li>
+        <li><strong>Transmit:</strong> Send the payload via UART to an ESP8266 running AT firmware.</li>
+        <li><strong>Connect:</strong> ESP8266 joins the Wi-Fi network and connects to the Rightech MQTT broker.</li>
+        <li><strong>Publish:</strong> ESP8266 publishes the payload to the appropriate MQTT topic.</li>
+        <li><strong>Visualize:</strong> Rightech dashboard displays live charts; rules trigger alerts if thresholds are exceeded.</li>
+      </ol>
+
+      <h3>STM32 → ESP8266 via UART (AT Commands)</h3>
+      <div class="code-block"><pre><span class="cm">/* Connect to Wi-Fi */</span>
+<span class="fn">HAL_UART_Transmit</span>(&amp;huart1,
+  (<span class="kw">uint8_t</span>*)<span class="str">"AT+CWJAP=\"SSID\",\"PASSWORD\"\r\n"</span>,
+  strlen(<span class="str">"AT+CWJAP=\"SSID\",\"PASSWORD\"\r\n"</span>), <span class="num">5000</span>);
+
+<span class="cm">/* Publish to MQTT topic via Rightech */</span>
+<span class="fn">HAL_UART_Transmit</span>(&amp;huart1,
+  (<span class="kw">uint8_t</span>*)<span class="str">"AT+MQTTPUB=0,\"base/sensors/temperature\",\"25.4\",0,0\r\n"</span>,
+  strlen(<span class="str">"AT+MQTTPUB=..."</span>), <span class="num">3000</span>);</pre></div>
+
+      <h3>MQTT Topic Design Best Practices</h3>
+      <ul>
+        <li>Use a hierarchy: <code>device/{id}/sensor/{type}</code></li>
+        <li>Keep payloads lightweight (JSON or plain numbers).</li>
+        <li>Use QoS 0 for telemetry, QoS 1 for important commands.</li>
+        <li>Use <code>$SYS/</code> topics for diagnostics where supported.</li>
+        <li>Avoid spaces and special characters in topic names.</li>
+      </ul>
+
+      <div class="callout success">
+        <span class="callout-icon">&#10003;</span>
+        <span>Once data flows to Rightech, you can create <strong>automation rules</strong> to send email alerts, turn on/off actuators, or trigger webhooks when conditions are met.</span>
+      </div>
+    </div>
+
+  </main>
+  <footer class="site-footer">
+    <p>&#169; 2024 MSME Embedded Systems &amp; IoT Workshop</p>
+  </footer>
+</div>
+
+<script>
+  const hamburger = document.getElementById('hamburger');
+  const sidebar   = document.getElementById('sidebar');
+  const overlay   = document.getElementById('overlay');
+  hamburger.addEventListener('click', () => { sidebar.classList.toggle('open'); overlay.classList.toggle('active'); });
+  overlay.addEventListener('click',   () => { sidebar.classList.remove('open'); overlay.classList.remove('active'); });
+</script>
+</body>
+</html>

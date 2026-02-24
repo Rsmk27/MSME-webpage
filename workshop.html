@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Workshop Materials — MSME Docs</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<header class="topbar">
+  <button class="hamburger" id="hamburger" aria-label="Toggle menu">&#9776;</button>
+  <a href="index.html" class="topbar-logo">
+    <div class="logo-icon">M</div>
+    <div>
+      <span class="logo-text">MSME Docs</span>
+      <span class="logo-sub">Embedded Systems Workshop</span>
+    </div>
+  </a>
+  <div class="topbar-spacer"></div>
+  <span class="topbar-badge">&#127979; Workshop</span>
+</header>
+
+<div class="overlay" id="overlay"></div>
+
+<aside class="sidebar" id="sidebar">
+  <nav>
+    <div class="sidebar-section">
+      <div class="sidebar-section-title">Navigation</div>
+      <ul>
+        <li><a href="index.html"><span class="nav-icon">&#127968;</span> Home</a></li>
+      </ul>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-section-title">Setup &amp; Tools</div>
+      <ul>
+        <li><a href="getting-started.html"><span class="nav-icon">&#128640;</span> Getting Started</a></li>
+        <li><a href="hardware.html"><span class="nav-icon">&#9881;</span> Hardware Reference</a></li>
+      </ul>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-section-title">Programming</div>
+      <ul>
+        <li><a href="programming.html"><span class="nav-icon">&#128187;</span> STM32 Programming</a></li>
+        <li><a href="sensors.html"><span class="nav-icon">&#128268;</span> Sensors &amp; Interfaces</a></li>
+      </ul>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-section-title">Advanced Topics</div>
+      <ul>
+        <li><a href="iot.html"><span class="nav-icon">&#127760;</span> IoT &amp; Cloud</a></li>
+        <li><a href="linux.html"><span class="nav-icon">&#128032;</span> Linux Tools</a></li>
+      </ul>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-section-title">Workshop</div>
+      <ul>
+        <li><a href="workshop.html" class="active"><span class="nav-icon">&#128203;</span> Workshop Materials</a></li>
+        <li><a href="projects.html"><span class="nav-icon">&#129302;</span> Projects</a></li>
+      </ul>
+    </div>
+  </nav>
+</aside>
+
+<div class="main-wrapper">
+  <main class="main-content">
+
+    <div class="page-header">
+      <div class="breadcrumb"><a href="index.html">Home</a> › Workshop Materials</div>
+      <h1>&#128203; Workshop Materials</h1>
+      <p>MSME Embedded Systems &amp; IoT workshop — highlights, day-by-day tasks, and the complete learning roadmap.</p>
+    </div>
+
+    <!-- Workshop Highlights -->
+    <div class="content-section" id="highlights">
+      <h2>&#127881; MSME Workshop Highlights</h2>
+
+      <p>The MSME (Ministry of Micro, Small and Medium Enterprises) Embedded Systems &amp; IoT workshop brought together students and professionals for hands-on learning in embedded systems development, from hardware bringup to cloud-connected IoT applications.</p>
+
+      <h3>Workshop Overview</h3>
+      <table class="doc-table">
+        <thead><tr><th>Aspect</th><th>Details</th></tr></thead>
+        <tbody>
+          <tr><td>Focus Area</td><td>Embedded Systems &amp; Internet of Things (IoT)</td></tr>
+          <tr><td>Hardware Platform</td><td>STM32F446RE Nucleo Board</td></tr>
+          <tr><td>Development IDE</td><td>STM32CubeIDE</td></tr>
+          <tr><td>Cloud Platform</td><td>Rightech IoT Cloud</td></tr>
+          <tr><td>OS Environment</td><td>Linux (Ubuntu VM via VMware)</td></tr>
+          <tr><td>Protocols Covered</td><td>I²C, SPI, UART, MQTT</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Key Learning Outcomes</h3>
+      <ul>
+        <li>Set up a complete embedded development environment on Linux using VMware.</li>
+        <li>Navigate and use the STM32CubeIDE for project creation, configuration, and debugging.</li>
+        <li>Understand the STM32F446RE microcontroller architecture and pin mapping on the Nucleo board.</li>
+        <li>Write HAL-based firmware for GPIO, UART, I²C, and SPI peripherals.</li>
+        <li>Interface real-world sensors (BME280) and peripherals (RFID-RC522) with STM32.</li>
+        <li>Connect STM32 devices to the cloud and publish sensor data using MQTT.</li>
+        <li>Use Linux terminal commands effectively for embedded development workflows.</li>
+        <li>Integrate voice-control capabilities in a robotic arm capstone project.</li>
+      </ul>
+
+      <h3>Workshop Modules</h3>
+      <div class="card-grid">
+        <div class="card">
+          <div class="card-icon blue">&#127381;</div>
+          <h3>Day 1–2: Environment Setup</h3>
+          <p>VMware installation, Linux basics, STM32CubeIDE installation and first project.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon teal">&#9881;</div>
+          <h3>Day 3: Hardware &amp; GPIO</h3>
+          <p>Nucleo board overview, GPIO configuration, LED blink, button interrupt.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon green">&#128268;</div>
+          <h3>Day 4–5: Sensors &amp; SPI</h3>
+          <p>BME280 over I²C, RFID-RC522 over SPI, serial terminal output.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon orange">&#127760;</div>
+          <h3>Day 6: IoT &amp; Cloud</h3>
+          <p>MQTT protocol, connecting to Rightech Cloud, building a live data dashboard.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon purple">&#129302;</div>
+          <h3>Day 7: Capstone Project</h3>
+          <p>Voice-controlled robotic arm — design, build, and demo.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Day 6 Tasks -->
+    <div class="content-section" id="day6">
+      <h2>&#128197; Day 6 Tasks</h2>
+      <p>The day 6 session focused on connecting STM32 firmware to the cloud using MQTT and the Rightech IoT platform.</p>
+
+      <h3>Task List</h3>
+      <ol class="step-list">
+        <li><strong>MQTT Basics:</strong> Study the MQTT protocol — understand QoS levels 0, 1, and 2, retain flag, and last-will messages.</li>
+        <li><strong>Rightech Account:</strong> Create and configure a Rightech IoT Cloud account. Register your STM32 device as an object.</li>
+        <li><strong>ESP8266 AT Firmware:</strong> Flash AT firmware to the ESP8266 module and verify Wi-Fi connectivity from the STM32 via UART.</li>
+        <li><strong>Publish Sensor Data:</strong> Read BME280 temperature/humidity on STM32 and publish values to Rightech via MQTT.</li>
+        <li><strong>Dashboard Setup:</strong> Create a live dashboard on Rightech with chart widgets for temperature and humidity.</li>
+        <li><strong>Alert Rule:</strong> Configure a Rightech automation rule to send an alert when temperature exceeds 30 °C.</li>
+        <li><strong>RFID Tag Logging:</strong> Read an RFID card UID and publish it as an event to a Rightech MQTT topic.</li>
+        <li><strong>Code Review:</strong> Refactor firmware — separate sensor reading, UART AT-commands, and MQTT logic into distinct source files.</li>
+      </ol>
+
+      <div class="callout info">
+        <span class="callout-icon">&#8505;</span>
+        <span>Refer to the <a href="iot.html">IoT &amp; Cloud</a> section for MQTT connection parameters and the <a href="sensors.html">Sensors &amp; Interfaces</a> section for BME280 and RFID wiring details.</span>
+      </div>
+    </div>
+
+    <!-- Roadmap -->
+    <div class="content-section" id="roadmap">
+      <h2>&#128506; Embedded Systems Learning Roadmap</h2>
+
+      <p>This roadmap outlines a structured learning path from zero to IoT-ready embedded systems developer.</p>
+
+      <h3>Phase 1 — Foundations</h3>
+      <ul>
+        <li>&#9989; Digital electronics basics: logic levels, pull-up/down resistors, decoupling capacitors</li>
+        <li>&#9989; C programming: pointers, structs, bit manipulation, volatile, const</li>
+        <li>&#9989; Microcontroller concepts: Harvard vs. von Neumann, registers, memory map</li>
+        <li>&#9989; Development environment: Linux, GCC cross-compiler, Makefile, GDB</li>
+      </ul>
+
+      <h3>Phase 2 — Hardware Bring-up</h3>
+      <ul>
+        <li>&#9989; GPIO — digital I/O, LED, button, debounce</li>
+        <li>&#9989; UART — serial communication, printf, bootloader</li>
+        <li>&#9989; Timers — delay, PWM for servo/LED dimming</li>
+        <li>&#9989; ADC — reading analog sensors (LDR, thermistor, potentiometer)</li>
+        <li>&#9989; I²C — interfacing sensors (BME280, MPU6050)</li>
+        <li>&#9989; SPI — SD card, RFID, display modules</li>
+      </ul>
+
+      <h3>Phase 3 — RTOS &amp; Advanced MCU</h3>
+      <ul>
+        <li>&#128993; FreeRTOS — tasks, semaphores, queues, timers</li>
+        <li>&#128993; DMA — peripheral-to-memory data transfers without CPU involvement</li>
+        <li>&#128993; Bootloader — custom bootloader via UART or USB DFU</li>
+        <li>&#128993; Low power — Sleep, Stop, Standby modes and wake-up sources</li>
+        <li>&#128993; CAN bus — multi-node vehicle/industrial communication</li>
+      </ul>
+
+      <h3>Phase 4 — IoT &amp; Connectivity</h3>
+      <ul>
+        <li>&#128993; Wi-Fi &amp; MQTT — ESP8266/ESP32 AT commands or native SDK</li>
+        <li>&#128993; Cloud platforms — Rightech, AWS IoT Core, Azure IoT Hub</li>
+        <li>&#128993; HTTP REST — RESTful APIs from embedded devices</li>
+        <li>&#128993; TLS/SSL — secure MQTT and HTTPS on constrained devices</li>
+        <li>&#128993; OTA updates — over-the-air firmware update mechanisms</li>
+      </ul>
+
+      <h3>Phase 5 — Professional Skills</h3>
+      <ul>
+        <li>&#128993; PCB design — KiCad schematic and layout basics</li>
+        <li>&#128993; Version control — Git workflows for embedded projects</li>
+        <li>&#128993; Unit testing — Ceedling/Unity for embedded C testing</li>
+        <li>&#128993; CI/CD — automated build and test with GitHub Actions</li>
+        <li>&#128993; MISRA-C — safety-critical coding standards</li>
+      </ul>
+
+      <div class="callout success">
+        <span class="callout-icon">&#127942;</span>
+        <span>Completing this workshop covers <strong>Phases 1, 2, and the IoT portion of Phase 4</strong>. Continue to Phase 3 (RTOS) as your next milestone!</span>
+      </div>
+    </div>
+
+  </main>
+  <footer class="site-footer">
+    <p>&#169; 2024 MSME Embedded Systems &amp; IoT Workshop</p>
+  </footer>
+</div>
+
+<script>
+  const hamburger = document.getElementById('hamburger');
+  const sidebar   = document.getElementById('sidebar');
+  const overlay   = document.getElementById('overlay');
+  hamburger.addEventListener('click', () => { sidebar.classList.toggle('open'); overlay.classList.toggle('active'); });
+  overlay.addEventListener('click',   () => { sidebar.classList.remove('open'); overlay.classList.remove('active'); });
+</script>
+</body>
+</html>

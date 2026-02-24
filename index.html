@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MSME Embedded Systems Workshop — Documentation</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<!-- Top Bar -->
+<header class="topbar">
+  <button class="hamburger" id="hamburger" aria-label="Toggle menu">&#9776;</button>
+  <a href="index.html" class="topbar-logo">
+    <div class="logo-icon">M</div>
+    <div>
+      <span class="logo-text">MSME Docs</span>
+      <span class="logo-sub">Embedded Systems Workshop</span>
+    </div>
+  </a>
+  <div class="topbar-spacer"></div>
+  <span class="topbar-badge">&#127979; Workshop</span>
+</header>
+
+<div class="overlay" id="overlay"></div>
+
+<!-- Sidebar -->
+<aside class="sidebar" id="sidebar">
+  <nav>
+    <div class="sidebar-section">
+      <div class="sidebar-section-title">Navigation</div>
+      <ul>
+        <li><a href="index.html" class="active"><span class="nav-icon">&#127968;</span> Home</a></li>
+      </ul>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-section-title">Setup &amp; Tools</div>
+      <ul>
+        <li><a href="getting-started.html"><span class="nav-icon">&#128640;</span> Getting Started</a></li>
+        <li><a href="hardware.html"><span class="nav-icon">&#9881;</span> Hardware Reference</a></li>
+      </ul>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-section-title">Programming</div>
+      <ul>
+        <li><a href="programming.html"><span class="nav-icon">&#128187;</span> STM32 Programming</a></li>
+        <li><a href="sensors.html"><span class="nav-icon">&#128268;</span> Sensors &amp; Interfaces</a></li>
+      </ul>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-section-title">Advanced Topics</div>
+      <ul>
+        <li><a href="iot.html"><span class="nav-icon">&#127760;</span> IoT &amp; Cloud</a></li>
+        <li><a href="linux.html"><span class="nav-icon">&#128032;</span> Linux Tools</a></li>
+      </ul>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-section-title">Workshop</div>
+      <ul>
+        <li><a href="workshop.html"><span class="nav-icon">&#128203;</span> Workshop Materials</a></li>
+        <li><a href="projects.html"><span class="nav-icon">&#129302;</span> Projects</a></li>
+      </ul>
+    </div>
+  </nav>
+</aside>
+
+<!-- Main Content -->
+<div class="main-wrapper">
+  <main class="main-content">
+
+    <!-- Hero -->
+    <div class="hero">
+      <h1>&#127760; MSME Embedded Systems Workshop</h1>
+      <p>A comprehensive documentation portal for the Embedded Systems &amp; IoT workshop — covering hardware setup, STM32 programming, sensor interfacing, cloud platforms, and hands-on projects.</p>
+      <div class="hero-badges">
+        <span class="hero-badge">&#127381; STM32F446RE</span>
+        <span class="hero-badge">&#128268; Sensor Interfacing</span>
+        <span class="hero-badge">&#127760; IoT &amp; Cloud</span>
+        <span class="hero-badge">&#128032; Linux Tools</span>
+        <span class="hero-badge">&#129302; Robotics</span>
+      </div>
+    </div>
+
+    <!-- Overview Cards -->
+    <h2 class="section-title">&#128366; Documentation Sections</h2>
+    <div class="card-grid">
+
+      <a href="getting-started.html" class="card">
+        <div class="card-icon blue">&#128640;</div>
+        <h3>Getting Started</h3>
+        <p>Set up your development environment with VMware and STM32 Cube IDE.</p>
+        <span class="card-tag">2 guides</span>
+      </a>
+
+      <a href="hardware.html" class="card">
+        <div class="card-icon teal">&#9881;</div>
+        <h3>Hardware Reference</h3>
+        <p>STM32F446RE microcontroller datasheet, Nucleo board pinouts, and connector diagrams.</p>
+        <span class="card-tag">1 MCU · Pinout diagrams</span>
+      </a>
+
+      <a href="programming.html" class="card">
+        <div class="card-icon blue">&#128187;</div>
+        <h3>STM32 Programming</h3>
+        <p>Blink an LED, learn ARM Cortex-M programming, and explore STM32 HAL libraries.</p>
+        <span class="card-tag">2 guides</span>
+      </a>
+
+      <a href="sensors.html" class="card">
+        <div class="card-icon green">&#128268;</div>
+        <h3>Sensors &amp; Interfaces</h3>
+        <p>BME280 environmental sensor over I²C/SPI, and RFID reader with SPI protocol.</p>
+        <span class="card-tag">BME280 · RFID · SPI</span>
+      </a>
+
+      <a href="iot.html" class="card">
+        <div class="card-icon orange">&#127760;</div>
+        <h3>IoT &amp; Cloud</h3>
+        <p>Connect your device to the Rightech IoT Cloud and build end-to-end IoT applications.</p>
+        <span class="card-tag">Rightech Cloud · MQTT</span>
+      </a>
+
+      <a href="linux.html" class="card">
+        <div class="card-icon purple">&#128032;</div>
+        <h3>Linux Tools</h3>
+        <p>Essential Linux commands and terminal productivity tricks for embedded development.</p>
+        <span class="card-tag">Commands · Terminal tricks</span>
+      </a>
+
+      <a href="workshop.html" class="card">
+        <div class="card-icon yellow">&#128203;</div>
+        <h3>Workshop Materials</h3>
+        <p>Workshop highlights, daily tasks, and the Embedded Systems learning roadmap.</p>
+        <span class="card-tag">Highlights · Roadmap</span>
+      </a>
+
+      <a href="projects.html" class="card">
+        <div class="card-icon orange">&#129302;</div>
+        <h3>Projects</h3>
+        <p>Voice-controlled robotic arm project — design, wiring, code, and demo.</p>
+        <span class="card-tag">Capstone project</span>
+      </a>
+
+    </div>
+
+    <!-- All Resources -->
+    <h2 class="section-title">&#128196; All Resources</h2>
+
+    <div class="resource-card">
+      <div class="resource-file-icon pdf">PDF</div>
+      <div class="resource-info">
+        <h4>Blinking LED</h4>
+        <p>First GPIO programming exercise — toggle an LED on the STM32 Nucleo board. <a href="programming.html#blink">View guide →</a></p>
+      </div>
+    </div>
+
+    <div class="resource-card">
+      <div class="resource-file-icon pdf">PDF</div>
+      <div class="resource-info">
+        <h4>BME280 Interfacing with STM32F446RE</h4>
+        <p>Read temperature, humidity, and pressure from a BME280 sensor over I²C. <a href="sensors.html#bme280">View guide →</a></p>
+      </div>
+    </div>
+
+    <div class="resource-card">
+      <div class="resource-file-icon txt">TXT</div>
+      <div class="resource-info">
+        <h4>Day 6 Tasks</h4>
+        <p>Task list and exercises for workshop day 6. <a href="workshop.html#day6">View tasks →</a></p>
+      </div>
+    </div>
+
+    <div class="resource-card">
+      <div class="resource-file-icon pdf">PDF</div>
+      <div class="resource-info">
+        <h4>Embedded Systems Roadmap</h4>
+        <p>Structured learning path from bare-metal fundamentals to advanced IoT. <a href="workshop.html#roadmap">View roadmap →</a></p>
+      </div>
+    </div>
+
+    <div class="resource-card">
+      <div class="resource-file-icon doc">DOC</div>
+      <div class="resource-info">
+        <h4>ESDP-MSME: Build An IoT Application</h4>
+        <p>End-to-end guide for building and deploying an IoT application. <a href="iot.html#build-iot">View guide →</a></p>
+      </div>
+    </div>
+
+    <div class="resource-card">
+      <div class="resource-file-icon txt">TXT</div>
+      <div class="resource-info">
+        <h4>Linux Terminal Tricks</h4>
+        <p>Productivity tips and shortcuts for the Linux terminal. <a href="linux.html#tricks">View tricks →</a></p>
+      </div>
+    </div>
+
+    <div class="resource-card">
+      <div class="resource-file-icon pdf">PDF</div>
+      <div class="resource-info">
+        <h4>Linux Commands Explained</h4>
+        <p>Comprehensive reference for essential Linux commands with examples. <a href="linux.html#commands">View reference →</a></p>
+      </div>
+    </div>
+
+    <div class="resource-card">
+      <div class="resource-file-icon docx">DOCX</div>
+      <div class="resource-info">
+        <h4>MSME Workshop Highlights</h4>
+        <p>Summary and key highlights from the MSME Embedded Systems workshop. <a href="workshop.html#highlights">View highlights →</a></p>
+      </div>
+    </div>
+
+    <div class="resource-card">
+      <div class="resource-file-icon pdf">PDF</div>
+      <div class="resource-info">
+        <h4>RFID – SPI Interface</h4>
+        <p>Using RFID modules with the SPI protocol on STM32. <a href="sensors.html#rfid">View guide →</a></p>
+      </div>
+    </div>
+
+    <div class="resource-card">
+      <div class="resource-file-icon pdf">PDF</div>
+      <div class="resource-info">
+        <h4>Rightech Cloud</h4>
+        <p>Connect STM32 devices to the Rightech IoT Cloud platform via MQTT. <a href="iot.html#rightech">View guide →</a></p>
+      </div>
+    </div>
+
+    <div class="resource-card">
+      <div class="resource-file-icon pdf">PDF</div>
+      <div class="resource-info">
+        <h4>STM32 CUBE IDE</h4>
+        <p>Installation, project setup, debugging, and flashing with STM32CubeIDE. <a href="getting-started.html#cubeide">View guide →</a></p>
+      </div>
+    </div>
+
+    <div class="resource-card">
+      <div class="resource-file-icon pdf">PDF</div>
+      <div class="resource-info">
+        <h4>STM32 ARM Programming for Embedded Systems</h4>
+        <p>Deep dive into ARM Cortex-M architecture and STM32 peripheral programming. <a href="programming.html#arm">View guide →</a></p>
+      </div>
+    </div>
+
+    <div class="resource-card">
+      <div class="resource-file-icon pdf">PDF</div>
+      <div class="resource-info">
+        <h4>STM32F446RE Reference</h4>
+        <p>Datasheet and reference manual for the STM32F446RE microcontroller. <a href="hardware.html#stm32f446re">View reference →</a></p>
+      </div>
+    </div>
+
+    <div class="resource-card">
+      <div class="resource-file-icon pdf">PDF</div>
+      <div class="resource-info">
+        <h4>VMware Installation</h4>
+        <p>Step-by-step guide for installing VMware Workstation for embedded development. <a href="getting-started.html#vmware">View guide →</a></p>
+      </div>
+    </div>
+
+    <div class="resource-card">
+      <div class="resource-file-icon pptx">PPTX</div>
+      <div class="resource-info">
+        <h4>Voice Controlled Robotic Arm</h4>
+        <p>Capstone project — a voice-activated robotic arm built with STM32 and servo motors. <a href="projects.html">View project →</a></p>
+      </div>
+    </div>
+
+  </main>
+
+  <footer class="site-footer">
+    <p>&#169; 2024 MSME Embedded Systems &amp; IoT Workshop &nbsp;|&nbsp; Built for learners, by learners.</p>
+  </footer>
+</div>
+
+<script>
+  const hamburger = document.getElementById('hamburger');
+  const sidebar   = document.getElementById('sidebar');
+  const overlay   = document.getElementById('overlay');
+  hamburger.addEventListener('click', () => {
+    sidebar.classList.toggle('open');
+    overlay.classList.toggle('active');
+  });
+  overlay.addEventListener('click', () => {
+    sidebar.classList.remove('open');
+    overlay.classList.remove('active');
+  });
+</script>
+</body>
+</html>

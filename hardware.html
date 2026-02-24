@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hardware Reference — MSME Docs</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<header class="topbar">
+  <button class="hamburger" id="hamburger" aria-label="Toggle menu">&#9776;</button>
+  <a href="index.html" class="topbar-logo">
+    <div class="logo-icon">M</div>
+    <div>
+      <span class="logo-text">MSME Docs</span>
+      <span class="logo-sub">Embedded Systems Workshop</span>
+    </div>
+  </a>
+  <div class="topbar-spacer"></div>
+  <span class="topbar-badge">&#127979; Workshop</span>
+</header>
+
+<div class="overlay" id="overlay"></div>
+
+<aside class="sidebar" id="sidebar">
+  <nav>
+    <div class="sidebar-section">
+      <div class="sidebar-section-title">Navigation</div>
+      <ul>
+        <li><a href="index.html"><span class="nav-icon">&#127968;</span> Home</a></li>
+      </ul>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-section-title">Setup &amp; Tools</div>
+      <ul>
+        <li><a href="getting-started.html"><span class="nav-icon">&#128640;</span> Getting Started</a></li>
+        <li><a href="hardware.html" class="active"><span class="nav-icon">&#9881;</span> Hardware Reference</a></li>
+      </ul>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-section-title">Programming</div>
+      <ul>
+        <li><a href="programming.html"><span class="nav-icon">&#128187;</span> STM32 Programming</a></li>
+        <li><a href="sensors.html"><span class="nav-icon">&#128268;</span> Sensors &amp; Interfaces</a></li>
+      </ul>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-section-title">Advanced Topics</div>
+      <ul>
+        <li><a href="iot.html"><span class="nav-icon">&#127760;</span> IoT &amp; Cloud</a></li>
+        <li><a href="linux.html"><span class="nav-icon">&#128032;</span> Linux Tools</a></li>
+      </ul>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-section-title">Workshop</div>
+      <ul>
+        <li><a href="workshop.html"><span class="nav-icon">&#128203;</span> Workshop Materials</a></li>
+        <li><a href="projects.html"><span class="nav-icon">&#129302;</span> Projects</a></li>
+      </ul>
+    </div>
+  </nav>
+</aside>
+
+<div class="main-wrapper">
+  <main class="main-content">
+
+    <div class="page-header">
+      <div class="breadcrumb"><a href="index.html">Home</a> › Hardware Reference</div>
+      <h1>&#9881; Hardware Reference</h1>
+      <p>Pin diagrams, connector maps, and key specifications for the STM32F446RE microcontroller and NUCLEO-F446RE development board.</p>
+    </div>
+
+    <!-- STM32F446RE MCU -->
+    <div class="content-section" id="stm32f446re">
+      <h2>&#128187; STM32F446RE Microcontroller</h2>
+
+      <p>The STM32F446RE is a high-performance ARM Cortex-M4 microcontroller from STMicroelectronics, featuring DSP instructions and FPU, making it ideal for motor control and IoT applications.</p>
+
+      <h3>Key Specifications</h3>
+      <table class="doc-table">
+        <thead><tr><th>Parameter</th><th>Value</th></tr></thead>
+        <tbody>
+          <tr><td>Core</td><td>ARM Cortex-M4 with FPU</td></tr>
+          <tr><td>Max Clock</td><td>180 MHz</td></tr>
+          <tr><td>Flash Memory</td><td>512 KB</td></tr>
+          <tr><td>SRAM</td><td>128 KB</td></tr>
+          <tr><td>GPIO</td><td>Up to 50 I/O pins</td></tr>
+          <tr><td>ADC</td><td>3× 12-bit ADC</td></tr>
+          <tr><td>UART/USART</td><td>4× USART + 2× UART</td></tr>
+          <tr><td>SPI</td><td>4× SPI</td></tr>
+          <tr><td>I²C</td><td>3× I²C</td></tr>
+          <tr><td>CAN</td><td>2× CAN 2.0B</td></tr>
+          <tr><td>USB</td><td>USB 2.0 OTG FS/HS</td></tr>
+          <tr><td>Operating Voltage</td><td>1.8 V – 3.6 V</td></tr>
+          <tr><td>Package</td><td>LQFP64</td></tr>
+        </tbody>
+      </table>
+
+      <h3>GPIO Port Overview</h3>
+      <table class="doc-table">
+        <thead><tr><th>Port</th><th>Pins</th><th>Common Uses</th></tr></thead>
+        <tbody>
+          <tr><td>GPIOA</td><td>PA0–PA15</td><td>UART2 TX/RX (PA2/PA3), ADC inputs, TIM2</td></tr>
+          <tr><td>GPIOB</td><td>PB0–PB15</td><td>SPI2, I²C1, TIM3/TIM4</td></tr>
+          <tr><td>GPIOC</td><td>PC0–PC15</td><td>ADC inputs, SPI3, UART4/5</td></tr>
+          <tr><td>GPIOD</td><td>PD0–PD15</td><td>FSMC, USART3</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Nucleo Board -->
+    <div class="content-section" id="nucleo">
+      <h2>&#9654; NUCLEO-F446RE Development Board</h2>
+
+      <p>The NUCLEO-F446RE is an affordable development board from ST with an integrated ST-LINK/V2-1 debugger, Arduino Uno R3-compatible headers, and ST Morpho extension connectors.</p>
+
+      <h3>Board Overview</h3>
+      <img src="https://github.com/user-attachments/assets/966386af-5dcf-4664-b2b2-510eea59e9fc"
+           alt="STM32 NUCLEO board physical layout (MB1136)" class="doc-image" />
+      <p class="img-caption">STM32 NUCLEO-F446RE board — MB1136 revision. Key connectors and components are labeled.</p>
+
+      <h3>Key Components</h3>
+      <table class="doc-table">
+        <thead><tr><th>Label</th><th>Component</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td>CN1</td><td>ST-LINK USB (Mini-B)</td><td>Programming, debugging &amp; virtual COM port</td></tr>
+          <tr><td>B1 USER</td><td>Blue push button</td><td>Connected to PC13, active-low</td></tr>
+          <tr><td>B2 RESET</td><td>Black push button</td><td>MCU hardware reset</td></tr>
+          <tr><td>LD2</td><td>Green LED</td><td>Connected to PA5 (Arduino D13)</td></tr>
+          <tr><td>LD1</td><td>Red/Green LED</td><td>ST-LINK communication indicator</td></tr>
+          <tr><td>LD3</td><td>Red LED (PWR)</td><td>Power indicator (3.3 V on)</td></tr>
+          <tr><td>U5 (STM32)</td><td>STM32F446RET6</td><td>Main microcontroller</td></tr>
+          <tr><td>CN5/CN6/CN8/CN9</td><td>Arduino headers</td><td>Arduino Uno R3 compatible</td></tr>
+          <tr><td>CN7/CN10</td><td>ST Morpho headers</td><td>Expose all MCU pins</td></tr>
+          <tr><td>SB2</td><td>Solder bridge</td><td>3.3 V regulator output enable</td></tr>
+        </tbody>
+      </table>
+
+      <h3>NUCLEO-F411RE Pin Map — Arduino Headers</h3>
+      <img src="https://github.com/user-attachments/assets/815f5c84-1e42-4737-86c7-6642cf48c31e"
+           alt="NUCLEO-F411RE Arduino header pinout" class="doc-image" />
+      <p class="img-caption">NUCLEO-F411RE Arduino-compatible header pinout. The F446RE shares the same connector layout.</p>
+
+      <h3>Serial (UART) Connections</h3>
+      <img src="https://github.com/user-attachments/assets/e2ad10bd-ec83-4c3c-be3c-d29184ec28da"
+           alt="NUCLEO F411RE/F446RE Serial Rx/Tx connection diagram" class="doc-image" />
+      <p class="img-caption">NUCLEO F411RE/F446RE — Serial1 Rx/Tx connection detail. The ST-LINK VCP uses USART2 by default (PA2 TX, PA3 RX on F446RE).</p>
+
+      <div class="callout info">
+        <span class="callout-icon">&#8505;</span>
+        <span>On the F446RE, the default <strong>ST-LINK VCP</strong> (Virtual COM Port) maps to <strong>USART2</strong> (PA2 = TX, PA3 = RX). Open a serial terminal at 115200 baud to see printf output.</span>
+      </div>
+
+      <h3>Onboard LED &amp; Button Pinout</h3>
+      <table class="doc-table">
+        <thead><tr><th>Signal</th><th>MCU Pin</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr><td>LD2 (Green LED)</td><td>PA5</td><td>HIGH = LED on; also Arduino D13</td></tr>
+          <tr><td>B1 USER Button</td><td>PC13</td><td>LOW when pressed (internal pull-up)</td></tr>
+          <tr><td>ST-LINK VCP TX</td><td>PA2 (USART2_TX)</td><td>MCU transmits → PC receives</td></tr>
+          <tr><td>ST-LINK VCP RX</td><td>PA3 (USART2_RX)</td><td>PC transmits → MCU receives</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+  </main>
+  <footer class="site-footer">
+    <p>&#169; 2024 MSME Embedded Systems &amp; IoT Workshop</p>
+  </footer>
+</div>
+
+<script>
+  const hamburger = document.getElementById('hamburger');
+  const sidebar   = document.getElementById('sidebar');
+  const overlay   = document.getElementById('overlay');
+  hamburger.addEventListener('click', () => { sidebar.classList.toggle('open'); overlay.classList.toggle('active'); });
+  overlay.addEventListener('click',   () => { sidebar.classList.remove('open'); overlay.classList.remove('active'); });
+</script>
+</body>
+</html>
