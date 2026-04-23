@@ -3,6 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="A comprehensive documentation portal for the MSME Embedded Systems & IoT workshop. Covering hardware setup, STM32 programming, sensor interfacing, cloud platforms, and hands-on projects." />
+  <meta property="og:title" content="MSME Embedded Systems Workshop — Documentation" />
+  <meta property="og:description" content="A comprehensive documentation portal for the MSME Embedded Systems & IoT workshop." />
+  <meta property="og:type" content="website" />
   <title>MSME Embedded Systems Workshop — Documentation</title>
   <link rel="stylesheet" href="css/style.css" />
 </head>
@@ -143,127 +147,207 @@
 
     </div>
 
+    <!-- Hardware & Architecture Diagrams -->
+    <h2 class="section-title">&#128444; Diagrams & Overviews</h2>
+    <div class="gallery-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 1.5rem; margin-bottom: 3rem;">
+      <div class="gallery-item" style="background: var(--card-bg); padding: 1rem; border-radius: var(--radius); border: 1px solid var(--card-border); backdrop-filter: var(--glass-blur); transition: transform 0.3s; cursor: pointer;">
+        <img src="data/stm32overview.jpeg" alt="STM32 Overview" style="width: 100%; border-radius: 8px; margin-bottom: 0.5rem; aspect-ratio: 16/9; object-fit: cover;" />
+        <h4 style="color: #fff; font-size: 0.95rem;">STM32 Overview</h4>
+      </div>
+      <div class="gallery-item" style="background: var(--card-bg); padding: 1rem; border-radius: var(--radius); border: 1px solid var(--card-border); backdrop-filter: var(--glass-blur); transition: transform 0.3s; cursor: pointer;">
+        <img src="data/NUCLEO-XXXRX-intro.jpg" alt="Nucleo Board Intro" style="width: 100%; border-radius: 8px; margin-bottom: 0.5rem; aspect-ratio: 16/9; object-fit: cover;" />
+        <h4 style="color: #fff; font-size: 0.95rem;">Nucleo Board Intro</h4>
+      </div>
+      <div class="gallery-item" style="background: var(--card-bg); padding: 1rem; border-radius: var(--radius); border: 1px solid var(--card-border); backdrop-filter: var(--glass-blur); transition: transform 0.3s; cursor: pointer;">
+        <img src="data/ARM_CortexM_CMSIS_large.png" alt="ARM Cortex-M CMSIS" style="width: 100%; border-radius: 8px; margin-bottom: 0.5rem; aspect-ratio: 16/9; object-fit: cover;" />
+        <h4 style="color: #fff; font-size: 0.95rem;">ARM Cortex-M CMSIS</h4>
+      </div>
+      <div class="gallery-item" style="background: var(--card-bg); padding: 1rem; border-radius: var(--radius); border: 1px solid var(--card-border); backdrop-filter: var(--glass-blur); transition: transform 0.3s; cursor: pointer;">
+        <img src="data/nucleo-f411re-f446re-wifi-serial1.png" alt="WiFi Serial Connection" style="width: 100%; border-radius: 8px; margin-bottom: 0.5rem; aspect-ratio: 16/9; object-fit: cover;" />
+        <h4 style="color: #fff; font-size: 0.95rem;">WiFi Serial Connection</h4>
+      </div>
+      <div class="gallery-item" style="background: var(--card-bg); padding: 1rem; border-radius: var(--radius); border: 1px solid var(--card-border); backdrop-filter: var(--glass-blur); transition: transform 0.3s; cursor: pointer;">
+        <img src="data/spi_connections_slaves.png" alt="SPI Slaves Connection" style="width: 100%; border-radius: 8px; margin-bottom: 0.5rem; aspect-ratio: 16/9; object-fit: cover;" />
+        <h4 style="color: #fff; font-size: 0.95rem;">SPI Connections</h4>
+      </div>
+      <div class="gallery-item" style="background: var(--card-bg); padding: 1rem; border-radius: var(--radius); border: 1px solid var(--card-border); backdrop-filter: var(--glass-blur); transition: transform 0.3s; cursor: pointer;">
+        <img src="data/spi_frame.png" alt="SPI Frame" style="width: 100%; border-radius: 8px; margin-bottom: 0.5rem; aspect-ratio: 16/9; object-fit: cover;" />
+        <h4 style="color: #fff; font-size: 0.95rem;">SPI Frame Diagram</h4>
+      </div>
+      <div class="gallery-item" style="background: var(--card-bg); padding: 1rem; border-radius: var(--radius); border: 1px solid var(--card-border); backdrop-filter: var(--glass-blur); transition: transform 0.3s; cursor: pointer;">
+        <img src="data/FreeRTOS.jpg.jpeg" alt="FreeRTOS Logo" style="width: 100%; border-radius: 8px; margin-bottom: 0.5rem; aspect-ratio: 16/9; object-fit: cover;" />
+        <h4 style="color: #fff; font-size: 0.95rem;">FreeRTOS</h4>
+      </div>
+      <div class="gallery-item" style="background: var(--card-bg); padding: 1rem; border-radius: var(--radius); border: 1px solid var(--card-border); backdrop-filter: var(--glass-blur); transition: transform 0.3s; cursor: pointer;">
+        <img src="data/FreeRTOS_demo.Jpeg" alt="FreeRTOS Demo" style="width: 100%; border-radius: 8px; margin-bottom: 0.5rem; aspect-ratio: 16/9; object-fit: cover;" />
+        <h4 style="color: #fff; font-size: 0.95rem;">FreeRTOS Demo</h4>
+      </div>
+    </div>
+
     <!-- All Resources -->
-    <h2 class="section-title">&#128196; All Resources</h2>
+    <h2 class="section-title">&#128196; Downloadable Resources</h2>
+    <div class="resources-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1rem; margin-bottom: 2rem;">
 
-    <div class="resource-card">
-      <div class="resource-file-icon pdf">PDF</div>
-      <div class="resource-info">
-        <h4>Blinking LED</h4>
-        <p>First GPIO programming exercise — toggle an LED on the STM32 Nucleo board. <a href="programming.html#blink">View guide →</a></p>
+      <div class="resource-card">
+        <div class="resource-file-icon pdf">PDF</div>
+        <div class="resource-info">
+          <h4><a href="data/Blinking%20LED.pdf" download>Blinking LED</a></h4>
+          <p>First GPIO programming exercise — toggle an LED on the STM32 Nucleo board.</p>
+        </div>
       </div>
-    </div>
 
-    <div class="resource-card">
-      <div class="resource-file-icon pdf">PDF</div>
-      <div class="resource-info">
-        <h4>BME280 Interfacing with STM32F446RE</h4>
-        <p>Read temperature, humidity, and pressure from a BME280 sensor over I²C. <a href="sensors.html#bme280">View guide →</a></p>
+      <div class="resource-card">
+        <div class="resource-file-icon pdf">PDF</div>
+        <div class="resource-info">
+          <h4><a href="data/BME280%20interfacing%20with%20STM32F446RE.pdf" download>BME280 Interfacing</a></h4>
+          <p>Read temperature, humidity, and pressure from a BME280 sensor over I²C.</p>
+        </div>
       </div>
-    </div>
 
-    <div class="resource-card">
-      <div class="resource-file-icon txt">TXT</div>
-      <div class="resource-info">
-        <h4>Day 6 Tasks</h4>
-        <p>Task list and exercises for workshop day 6. <a href="workshop.html#day6">View tasks →</a></p>
+      <div class="resource-card">
+        <div class="resource-file-icon pdf">PDF</div>
+        <div class="resource-info">
+          <h4><a href="data/RFID%20-%20SPI.pdf" download>RFID – SPI Interface</a></h4>
+          <p>Using RFID modules with the SPI protocol on STM32.</p>
+        </div>
       </div>
-    </div>
 
-    <div class="resource-card">
-      <div class="resource-file-icon pdf">PDF</div>
-      <div class="resource-info">
-        <h4>Embedded Systems Roadmap</h4>
-        <p>Structured learning path from bare-metal fundamentals to advanced IoT. <a href="workshop.html#roadmap">View roadmap →</a></p>
+      <div class="resource-card">
+        <div class="resource-file-icon pdf">PDF</div>
+        <div class="resource-info">
+          <h4><a href="data/Rightech%20Cloud.pdf" download>Rightech Cloud</a></h4>
+          <p>Connect STM32 devices to the Rightech IoT Cloud platform via MQTT.</p>
+        </div>
       </div>
-    </div>
 
-    <div class="resource-card">
-      <div class="resource-file-icon doc">DOC</div>
-      <div class="resource-info">
-        <h4>ESDP-MSME: Build An IoT Application</h4>
-        <p>End-to-end guide for building and deploying an IoT application. <a href="iot.html#build-iot">View guide →</a></p>
+      <div class="resource-card">
+        <div class="resource-file-icon doc">DOC</div>
+        <div class="resource-info">
+          <h4><a href="data/ESDP-MSME-Content_Build%20An%20IoT%20Applications.doc" download>Build An IoT Application</a></h4>
+          <p>End-to-end guide for building and deploying an IoT application.</p>
+        </div>
       </div>
-    </div>
 
-    <div class="resource-card">
-      <div class="resource-file-icon txt">TXT</div>
-      <div class="resource-info">
-        <h4>Linux Terminal Tricks</h4>
-        <p>Productivity tips and shortcuts for the Linux terminal. <a href="linux.html#tricks">View tricks →</a></p>
+      <div class="resource-card">
+        <div class="resource-file-icon pdf">PDF</div>
+        <div class="resource-info">
+          <h4><a href="data/Embedded%20systems%20Roadmap.pdf" download>Embedded Systems Roadmap</a></h4>
+          <p>Structured learning path from bare-metal fundamentals to advanced IoT.</p>
+        </div>
       </div>
-    </div>
 
-    <div class="resource-card">
-      <div class="resource-file-icon pdf">PDF</div>
-      <div class="resource-info">
-        <h4>Linux Commands Explained</h4>
-        <p>Comprehensive reference for essential Linux commands with examples. <a href="linux.html#commands">View reference →</a></p>
+      <div class="resource-card">
+        <div class="resource-file-icon docx">DOCX</div>
+        <div class="resource-info">
+          <h4><a href="data/MSME%20Workshop%20Highlights.docx" download>Workshop Highlights</a></h4>
+          <p>Summary and key highlights from the MSME Embedded Systems workshop.</p>
+        </div>
       </div>
-    </div>
 
-    <div class="resource-card">
-      <div class="resource-file-icon docx">DOCX</div>
-      <div class="resource-info">
-        <h4>MSME Workshop Highlights</h4>
-        <p>Summary and key highlights from the MSME Embedded Systems workshop. <a href="workshop.html#highlights">View highlights →</a></p>
+      <div class="resource-card">
+        <div class="resource-file-icon txt">TXT</div>
+        <div class="resource-info">
+          <h4><a href="data/linux%20terminal%20tricks.txt" download>Linux Terminal Tricks</a></h4>
+          <p>Productivity tips and shortcuts for the Linux terminal.</p>
+        </div>
       </div>
-    </div>
 
-    <div class="resource-card">
-      <div class="resource-file-icon pdf">PDF</div>
-      <div class="resource-info">
-        <h4>RFID – SPI Interface</h4>
-        <p>Using RFID modules with the SPI protocol on STM32. <a href="sensors.html#rfid">View guide →</a></p>
+      <div class="resource-card">
+        <div class="resource-file-icon pdf">PDF</div>
+        <div class="resource-info">
+          <h4><a href="data/linux_commands_explained.pdf" download>Linux Commands Explained</a></h4>
+          <p>Comprehensive reference for essential Linux commands with examples.</p>
+        </div>
       </div>
-    </div>
 
-    <div class="resource-card">
-      <div class="resource-file-icon pdf">PDF</div>
-      <div class="resource-info">
-        <h4>Rightech Cloud</h4>
-        <p>Connect STM32 devices to the Rightech IoT Cloud platform via MQTT. <a href="iot.html#rightech">View guide →</a></p>
+      <div class="resource-card">
+        <div class="resource-file-icon pdf">PDF</div>
+        <div class="resource-info">
+          <h4><a href="data/STM32%20CUBE%20IDE.pdf" download>STM32 CUBE IDE</a></h4>
+          <p>Installation, project setup, debugging, and flashing with STM32CubeIDE.</p>
+        </div>
       </div>
-    </div>
 
-    <div class="resource-card">
-      <div class="resource-file-icon pdf">PDF</div>
-      <div class="resource-info">
-        <h4>STM32 CUBE IDE</h4>
-        <p>Installation, project setup, debugging, and flashing with STM32CubeIDE. <a href="getting-started.html#cubeide">View guide →</a></p>
+      <div class="resource-card">
+        <div class="resource-file-icon pdf">PDF</div>
+        <div class="resource-info">
+          <h4><a href="data/stm32-arm-programming-for-embedded-systems-1.pdf" download>STM32 ARM Programming</a></h4>
+          <p>Deep dive into ARM Cortex-M architecture and STM32 peripheral programming.</p>
+        </div>
       </div>
-    </div>
 
-    <div class="resource-card">
-      <div class="resource-file-icon pdf">PDF</div>
-      <div class="resource-info">
-        <h4>STM32 ARM Programming for Embedded Systems</h4>
-        <p>Deep dive into ARM Cortex-M architecture and STM32 peripheral programming. <a href="programming.html#arm">View guide →</a></p>
+      <div class="resource-card">
+        <div class="resource-file-icon pdf">PDF</div>
+        <div class="resource-info">
+          <h4><a href="data/stm32f446re.pdf" download>STM32F446RE Reference</a></h4>
+          <p>Datasheet and reference manual for the STM32F446RE microcontroller.</p>
+        </div>
       </div>
-    </div>
 
-    <div class="resource-card">
-      <div class="resource-file-icon pdf">PDF</div>
-      <div class="resource-info">
-        <h4>STM32F446RE Reference</h4>
-        <p>Datasheet and reference manual for the STM32F446RE microcontroller. <a href="hardware.html#stm32f446re">View reference →</a></p>
+      <div class="resource-card">
+        <div class="resource-file-icon pdf">PDF</div>
+        <div class="resource-info">
+          <h4><a href="data/VMware%20installation.pdf" download>VMware Installation</a></h4>
+          <p>Step-by-step guide for installing VMware Workstation.</p>
+        </div>
       </div>
-    </div>
 
-    <div class="resource-card">
-      <div class="resource-file-icon pdf">PDF</div>
-      <div class="resource-info">
-        <h4>VMware Installation</h4>
-        <p>Step-by-step guide for installing VMware Workstation for embedded development. <a href="getting-started.html#vmware">View guide →</a></p>
+      <div class="resource-card">
+        <div class="resource-file-icon pptx">PPTX</div>
+        <div class="resource-info">
+          <h4><a href="data/voice%20controlled%20Robo%20Arm.pptx" download>Voice Controlled Robo Arm</a></h4>
+          <p>Capstone project — a voice-activated robotic arm.</p>
+        </div>
       </div>
-    </div>
 
-    <div class="resource-card">
-      <div class="resource-file-icon pptx">PPTX</div>
-      <div class="resource-info">
-        <h4>Voice Controlled Robotic Arm</h4>
-        <p>Capstone project — a voice-activated robotic arm built with STM32 and servo motors. <a href="projects.html">View project →</a></p>
+      <div class="resource-card">
+        <div class="resource-file-icon pdf">PDF</div>
+        <div class="resource-info">
+          <h4><a href="data/01_RTOS.pdf" download>RTOS Fundamentals</a></h4>
+          <p>Introduction to Real-Time Operating Systems concepts.</p>
+        </div>
       </div>
+
+      <div class="resource-card">
+        <div class="resource-file-icon pptx">PPTX</div>
+        <div class="resource-info">
+          <h4><a href="data/RTOS_Types.pptx" download>RTOS Types</a></h4>
+          <p>Overview of different types of Real-Time Operating Systems.</p>
+        </div>
+      </div>
+
+      <div class="resource-card">
+        <div class="resource-file-icon docx">DOCX</div>
+        <div class="resource-info">
+          <h4><a href="data/Project%20Learning%20Platforms%20Open%20Source%20_-.docx" download>Open Source Platforms</a></h4>
+          <p>Guide to project learning on open source platforms.</p>
+        </div>
+      </div>
+
+      <div class="resource-card">
+        <div class="resource-file-icon pdf">PDF</div>
+        <div class="resource-info">
+          <h4><a href="data/1769254077496.pdf" download>Workshop Document</a></h4>
+          <p>Additional workshop reference material.</p>
+        </div>
+      </div>
+
+      <div class="resource-card">
+        <div class="resource-file-icon txt" style="background: linear-gradient(135deg, #a78bfa, #8b5cf6); color: #fff;">C</div>
+        <div class="resource-info">
+          <h4><a href="data/led_on_off_print_terminal.c" download>led_on_off_print_terminal.c</a></h4>
+          <p>C source code for LED toggling and terminal printing.</p>
+        </div>
+      </div>
+
+      <div class="resource-card">
+        <div class="resource-file-icon txt" style="background: linear-gradient(135deg, #a78bfa, #8b5cf6); color: #fff;">C</div>
+        <div class="resource-info">
+          <h4><a href="data/user_switch.c" download>user_switch.c</a></h4>
+          <p>C source code demonstrating user switch input handling.</p>
+        </div>
+      </div>
+
     </div>
 
   </main>

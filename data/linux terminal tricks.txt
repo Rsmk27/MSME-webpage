@@ -1,0 +1,12 @@
+figlet "RSMK" | lolcat
+
+cmatrix
+
+espeak "Ubuntu is alive. Welcome, engineer."
+
+awk 'BEGIN{srand();while(1){printf "%c",33+int(rand()*94);}}'
+
+echo -e "\a⚠ ALERT: Voltage fluctuation detected ⚠"
+
+sudo apt install -y neofetch
+neofetch
