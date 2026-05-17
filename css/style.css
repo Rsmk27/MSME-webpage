@@ -767,3 +767,10 @@ code {
   z-index: 850;
 }
 .overlay.active { display: block; }
+
+/* ===== ACCESSIBILITY ===== */
+*:focus-visible {
+  outline: 2px solid var(--primary-hover);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
