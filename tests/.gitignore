@@ -1,0 +1,4 @@
+# Build artifacts
+test_error
+user_switch_tested.c
+test_processed.c
