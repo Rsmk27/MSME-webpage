@@ -2,3 +2,5 @@
 test_error
 user_switch_tested.c
 test_processed.c
+test_usart2
+led_tested.c
