@@ -14,3 +14,9 @@ test:
 
 clean:
 	rm -f test_error user_switch_tested.c test_usart2 led_tested.c test_usart2_write led_write_tested.c
+	sed 's/int main(void)/int original_main(void)/g' ../data/led_on_off_print_terminal.c | sed 's/while ((SysTick->CTRL & 0x10000) == 0)/while (mock_systick_check())/g' | sed '1i int mock_systick_check(void);' > led_delay_tested.c
+	$(CC) $(CFLAGS) -o test_delay test_delay.c led_delay_tested.c
+	./test_delay
+
+clean:
+	rm -f test_error user_switch_tested.c test_usart2 led_tested.c test_delay led_delay_tested.c

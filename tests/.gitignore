@@ -4,3 +4,5 @@ user_switch_tested.c
 test_processed.c
 test_usart2
 led_tested.c
+test_delay
+led_delay_tested.c

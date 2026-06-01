@@ -1,5 +1,17 @@
 #include "stm32f4xx.h"
 
+volatile uint32_t msTicks = 0;
+
+void SysTick_Handler(void) { msTicks++; }
+
+void SysTick_Init(void) {
+  /* Configure SysTick to generate 1ms interrupts
+   * Default clock is 16MHz HSI */
+  SysTick->LOAD = 16000 - 1;
+  SysTick->VAL = 0;
+  SysTick->CTRL = 7; /* Enable SysTick, internal clock, enable interrupt */
+}
+
 void delayMS(int n);
 void USART2_init(void);
 void USART2_write(char ch);
@@ -16,6 +28,9 @@ int main(void) {
 
   /* USART2 init */
   USART2_init();
+
+  /* SysTick init */
+  SysTick_Init();
 
   while (1) {
     GPIOA->ODR |= 0x20; // LED ON
@@ -52,20 +67,12 @@ void USART2_print(char *str) {
   }
 }
 
-/* Delay function using SysTick timer */
+/* Delay function using SysTick interrupt */
 void delayMS(int n) {
-  /* Configure SysTick to generate 1ms delay
-   * Default clock is 16MHz HSI */
-  SysTick->LOAD = 16000 - 1;
-  SysTick->VAL = 0;
-  SysTick->CTRL = 5; /* Enable SysTick, internal clock, no interrupt */
-
-  for (int i = 0; i < n; i++) {
-    /* Wait until COUNTFLAG is set */
-    while ((SysTick->CTRL & 0x10000) == 0)
-      ;
+  uint32_t startTicks = msTicks;
+  while ((msTicks - startTicks) < (uint32_t)n) {
+#ifdef __arm__
+    __asm volatile("wfi");
+#endif
   }
-
-  /* Disable SysTick */
-  SysTick->CTRL = 0;
 }
