@@ -5,6 +5,13 @@ void USART2_init(void);
 void USART2_write(char ch);
 void USART2_print(char *str);
 
+
+#define GPIO_MODER_MODER2_1   0x00000020
+#define GPIO_AFRL_AFSEL2_AF7  0x00000700
+#define USART_BRR_9600_16MHZ  0x00000683
+#define USART_CR1_TE          0x00000008
+#define USART_CR1_UE          0x00002000
+
 int main(void) {
   /* Enable clocks */
   RCC->AHB1ENR |= 1;       // GPIOA clock
@@ -30,12 +37,12 @@ int main(void) {
 
 /* USART2 initialization (PA2 = TX) */
 void USART2_init(void) {
-  GPIOA->MODER |= 0x20;    // PA2 alternate function
-  GPIOA->AFR[0] |= 0x0700; // AF7 for USART2
+  GPIOA->MODER |= GPIO_MODER_MODER2_1;    // PA2 alternate function
+  GPIOA->AFR[0] |= GPIO_AFRL_AFSEL2_AF7;  // AF7 for USART2
 
-  USART2->BRR = 0x0683;  // 9600 baud @16MHz
-  USART2->CR1 = 0x0008;  // Enable TX
-  USART2->CR1 |= 0x2000; // Enable USART
+  USART2->BRR = USART_BRR_9600_16MHZ; // 9600 baud @16MHz
+  USART2->CR1 = USART_CR1_TE;         // Enable TX
+  USART2->CR1 |= USART_CR1_UE;        // Enable USART
 }
 
 /* Send one character */
