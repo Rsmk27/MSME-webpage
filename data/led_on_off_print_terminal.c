@@ -58,11 +58,13 @@ void delayMS(int n) {
    * Default clock is 16MHz HSI */
   SysTick->LOAD = 16000 - 1;
   SysTick->VAL = 0;
-  SysTick->CTRL = 5; /* Enable SysTick, internal clock, no interrupt */
+  SysTick->CTRL = SysTick_CTRL_ENABLE_Msk |
+                  SysTick_CTRL_CLKSOURCE_Msk; /* Enable SysTick, internal clock,
+                                                 no interrupt */
 
   for (int i = 0; i < n; i++) {
     /* Wait until COUNTFLAG is set */
-    while ((SysTick->CTRL & 0x10000) == 0)
+    while ((SysTick->CTRL & SysTick_CTRL_COUNTFLAG_Msk) == 0)
       ;
   }
 
