@@ -25,6 +25,12 @@ void USART2_write(char ch) {
     }
 }
 
+// Declare the functions we want to test
+void clear_buffer(void) {
+    capture_idx = 0;
+    captured_str[0] = '\0';
+}
+
 // Declare the function we want to test
 extern void USART2_print(char *str);
 
@@ -32,27 +38,24 @@ int main() {
     printf("Starting USART2_print test...\n");
 
     // Clear buffer
-    capture_idx = 0;
-    captured_str[0] = '\0';
+    clear_buffer();
 
     USART2_print("Hello, world!");
 
     assert(strcmp(captured_str, "Hello, world!") == 0);
 
     // Clear buffer again and test empty string
-    capture_idx = 0;
-    captured_str[0] = '\0';
+    clear_buffer();
 
     USART2_print("");
     assert(strcmp(captured_str, "") == 0);
 
     // Test a long string
-    capture_idx = 0;
-    captured_str[0] = '\0';
+    clear_buffer();
 
     USART2_print("1234567890\r\n");
     assert(strcmp(captured_str, "1234567890\r\n") == 0);
-
     printf("USART2_print test passed!\n");
+
     return 0;
 }
