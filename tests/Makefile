@@ -6,7 +6,7 @@ test:
 	$(CC) $(CFLAGS) -o test_error test_error_handler.c user_switch_tested.c
 	./test_error
 	sed 's/int main(void)/int original_main(void)/g' ../data/led_on_off_print_terminal.c | sed 's/void USART2_write(char ch)/void original_USART2_write(char ch)/g' > led_tested.c
-	$(CC) $(CFLAGS) -o test_usart2 test_usart2_print.c led_tested.c
+	$(CC) $(CFLAGS) -o test_usart2 test_usart2.c led_tested.c
 	./test_usart2
 
 clean:
