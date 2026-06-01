@@ -25,7 +25,7 @@ void USART2_write(char ch) {
     }
 }
 
-// Declare the function we want to test
+// Declare the functions we want to test
 extern void USART2_print(char *str);
 
 int main() {
@@ -52,7 +52,7 @@ int main() {
 
     USART2_print("1234567890\r\n");
     assert(strcmp(captured_str, "1234567890\r\n") == 0);
-
     printf("USART2_print test passed!\n");
+
     return 0;
 }
