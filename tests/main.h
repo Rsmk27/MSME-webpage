@@ -121,4 +121,12 @@ void __disable_irq(void);
 
 void Error_Handler(void);
 
+void __WFI(void);
+#define EXTI15_10_IRQn 40
+#define GPIO_MODE_IT_RISING_FALLING 0x10210000
+void HAL_NVIC_SetPriority(int IRQn, int PreemptPriority, int SubPriority);
+void HAL_NVIC_EnableIRQ(int IRQn);
+void HAL_GPIO_EXTI_IRQHandler(int GPIO_Pin);
+void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin);
+
 #endif
