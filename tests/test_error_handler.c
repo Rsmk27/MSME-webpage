@@ -37,3 +37,7 @@ int main(void) {
     printf("All tests passed!\n");
     return 0;
 }
+void __WFI(void) {}
+void HAL_NVIC_SetPriority(int IRQn, int PreemptPriority, int SubPriority) {}
+void HAL_NVIC_EnableIRQ(int IRQn) {}
+void HAL_GPIO_EXTI_IRQHandler(int GPIO_Pin) {}
