@@ -170,10 +170,10 @@ client.connect(<span class="str">"dev.rightech.io"</span>, <span class="num">188
 
       <h3>STM32 → ESP8266 via UART (AT Commands)</h3>
       <div class="code-block"><pre><span class="cm">/* Connect to Wi-Fi */</span>
-<span class="cm">/* WARNING: Do not hardcode credentials in production */</span>
-<span class="fn">HAL_UART_Transmit</span>(&amp;huart1,
-  (<span class="kw">uint8_t</span>*)<span class="str">"AT+CWJAP=\"YOUR_SSID\",\"YOUR_PASSWORD\"\r\n"</span>,
-  strlen(<span class="str">"AT+CWJAP=\"YOUR_SSID\",\"YOUR_PASSWORD\"\r\n"</span>), <span class="num">5000</span>);
+<span class="cm">/* Best practice: Load credentials dynamically (e.g., from secure storage or user input) */</span>
+<span class="kw">char</span> cmd[<span class="num">128</span>];
+<span class="fn">snprintf</span>(cmd, <span class="kw">sizeof</span>(cmd), <span class="str">"AT+CWJAP=\"%s\",\"%s\"\r\n"</span>, wifi_ssid, wifi_password);
+<span class="fn">HAL_UART_Transmit</span>(&amp;huart1, (<span class="kw">uint8_t</span>*)cmd, <span class="fn">strlen</span>(cmd), <span class="num">5000</span>);
 
 <span class="cm">/* Publish to MQTT topic via Rightech */</span>
 <span class="fn">HAL_UART_Transmit</span>(&amp;huart1,
