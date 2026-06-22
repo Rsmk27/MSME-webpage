@@ -8,6 +8,8 @@ int disable_irq_called = 0;
 int loop_entered = 0;
 int read_pin_called = 0;
 int write_pin_called = 0;
+int mock_osc_config_return = HAL_OK;
+int mock_clock_config_return = HAL_OK;
 
 jmp_buf test_env;
 
@@ -16,9 +18,9 @@ void __disable_irq(void) { disable_irq_called = 1; }
 
 // Mocks for HAL functions to allow compilation
 void HAL_Init(void) {}
-int HAL_RCC_OscConfig(RCC_OscInitTypeDef *RCC_OscInitStruct) { return HAL_OK; }
+int HAL_RCC_OscConfig(RCC_OscInitTypeDef *RCC_OscInitStruct) { return mock_osc_config_return; }
 int HAL_RCC_ClockConfig(RCC_ClkInitTypeDef *RCC_ClkInitStruct, int FLatency) {
-  return HAL_OK;
+  return mock_clock_config_return;
 }
 int HAL_USART_Init(USART_HandleTypeDef *husart) { return HAL_OK; }
 void HAL_GPIO_Init(int GPIOx, GPIO_InitTypeDef *GPIO_Init) {}
@@ -68,8 +70,47 @@ void test_hal_gpio_exti_callback(void) {
   printf("HAL_GPIO_EXTI_Callback test passed!\n");
 }
 
+
+void test_systemclock_config(void) {
+  printf("Starting SystemClock_Config test...\n");
+
+  // Happy path
+  mock_osc_config_return = HAL_OK;
+  mock_clock_config_return = HAL_OK;
+  disable_irq_called = 0;
+  loop_entered = 0;
+  SystemClock_Config();
+  assert(disable_irq_called == 0);
+  assert(loop_entered == 0);
+
+  // Error path 1: OscConfig fails
+  mock_osc_config_return = HAL_ERROR;
+  mock_clock_config_return = HAL_OK;
+  disable_irq_called = 0;
+  loop_entered = 0;
+  if (setjmp(test_env) == 0) {
+    SystemClock_Config();
+  }
+  assert(disable_irq_called == 1);
+  assert(loop_entered == 1);
+
+  // Error path 2: ClockConfig fails
+  mock_osc_config_return = HAL_OK;
+  mock_clock_config_return = HAL_ERROR;
+  disable_irq_called = 0;
+  loop_entered = 0;
+  if (setjmp(test_env) == 0) {
+    SystemClock_Config();
+  }
+  assert(disable_irq_called == 1);
+  assert(loop_entered == 1);
+
+  printf("SystemClock_Config test passed!\n");
+}
+
 int main(void) {
   test_error_handler();
+  test_systemclock_config();
   test_hal_gpio_exti_callback();
 
   printf("All user_switch tests passed!\n");
