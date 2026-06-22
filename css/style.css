@@ -25,7 +25,6 @@
   --code-text: #e2e8f0;
   --success: #10b981;
   --warning: #f59e0b;
-  --danger: #ef4444;
   --sidebar-width: 280px;
   --topbar-height: 72px;
   --radius: 16px;
@@ -664,7 +663,6 @@ body::after {
 .callout.info    { border-left: 4px solid var(--primary); }
 .callout.warning { border-left: 4px solid var(--warning); }
 .callout.success { border-left: 4px solid var(--success); }
-.callout.danger  { border-left: 4px solid var(--danger); }
 
 /* ===== TABLE ===== */
 .doc-table {
