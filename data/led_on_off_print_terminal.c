@@ -95,6 +95,7 @@ void delayMS(int n) {
     /* Wait until COUNTFLAG is set */
     while ((SysTick->CTRL & SysTick_CTRL_COUNTFLAG_Msk) == 0)
       ;
+  }
   uint32_t startTicks = msTicks;
   while ((msTicks - startTicks) < (uint32_t)n) {
 #ifdef __arm__
