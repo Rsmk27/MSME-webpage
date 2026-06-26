@@ -1,31 +1,69 @@
-class MsmeTopbar extends HTMLElement {
-  connectedCallback() {
-    this.innerHTML = `
-<!-- Top Bar -->
-<header class="topbar">
-  <button class="hamburger" id="hamburger" aria-label="Toggle menu">&#9776;</button>
-  <a href="index.html" class="topbar-logo">
-    <div class="logo-icon">M</div>
-    <div>
-      <span class="logo-text">MSME Docs</span>
-      <span class="logo-sub">Embedded Systems Workshop</span>
+const sidebarHTML = `
+    <div class="sidebar-section">
+      <div class="sidebar-section-title">Navigation</div>
+      <ul>
+        <li><a href="index.html"><span class="nav-icon">&#127968;</span> Home</a></li>
+      </ul>
     </div>
-  </a>
-  <div class="topbar-spacer"></div>
-  <span class="topbar-badge">&#127979; Workshop</span>
-</header>
-    `;
-  }
-}
-
-if (!customElements.get('msme-topbar')) {
-  customElements.define('msme-topbar', MsmeTopbar);
-}
-
+    <div class="sidebar-section">
+      <div class="sidebar-section-title">Setup &amp; Tools</div>
+      <ul>
+        <li><a href="getting-started.html"><span class="nav-icon">&#128640;</span> Getting Started</a></li>
+        <li><a href="hardware.html"><span class="nav-icon">&#9881;</span> Hardware Reference</a></li>
+      </ul>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-section-title">Programming</div>
+      <ul>
+        <li><a href="programming.html"><span class="nav-icon">&#128187;</span> STM32 Programming</a></li>
+        <li><a href="sensors.html"><span class="nav-icon">&#128268;</span> Sensors &amp; Interfaces</a></li>
+      </ul>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-section-title">Advanced Topics</div>
+      <ul>
+        <li><a href="iot.html"><span class="nav-icon">&#127760;</span> IoT &amp; Cloud</a></li>
+        <li><a href="linux.html"><span class="nav-icon">&#128032;</span> Linux Tools</a></li>
+      </ul>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-section-title">Workshop</div>
+      <ul>
+        <li><a href="workshop.html"><span class="nav-icon">&#128203;</span> Workshop Materials</a></li>
+        <li><a href="projects.html"><span class="nav-icon">&#129302;</span> Projects</a></li>
+      </ul>
+    </div>
+`;
 
 const hamburger = document.getElementById('hamburger');
 const sidebar   = document.getElementById('sidebar');
 const overlay   = document.getElementById('overlay');
+
+if (sidebar) {
+  // Create the nav element
+  const nav = document.createElement('nav');
+  nav.innerHTML = sidebarHTML;
+
+  // Set active class based on current URL
+  // In a real browser, window.location.pathname works, but in JSDOM testing it might be empty or 'blank'
+  // so we safely handle it.
+  let currentPath = '';
+  if (typeof window !== 'undefined' && window.location && window.location.pathname) {
+     currentPath = window.location.pathname.split('/').pop();
+  }
+  if (!currentPath || currentPath === 'blank') {
+     currentPath = 'index.html';
+  }
+
+  const links = nav.querySelectorAll('a');
+  links.forEach(link => {
+    if (link.getAttribute('href') === currentPath) {
+      link.classList.add('active');
+    }
+  });
+
+  sidebar.appendChild(nav);
+}
 
 if (hamburger && sidebar && overlay) {
   hamburger.addEventListener('click', () => {

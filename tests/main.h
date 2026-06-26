@@ -120,6 +120,7 @@ void __disable_irq(void);
 #define GPIO_SPEED_FREQ_LOW 1
 
 void Error_Handler(void);
+void SystemClock_Config(void);
 
 void __WFI(void);
 #define EXTI15_10_IRQn 40
