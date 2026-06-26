@@ -9,7 +9,7 @@ void SysTick_Init(void) {
    * Default clock is 16MHz HSI */
   SysTick->LOAD = 16000 - 1;
   SysTick->VAL = 0;
-  SysTick->CTRL = 7; /* Enable SysTick, internal clock, enable interrupt */
+  SysTick->CTRL = (SysTick_CTRL_CLKSOURCE_Msk | SysTick_CTRL_TICKINT_Msk | SysTick_CTRL_ENABLE_Msk); /* Enable SysTick, internal clock, enable interrupt */
 }
 
 void delayMS(int n);
@@ -83,18 +83,6 @@ void USART2_print(char *str) {
 
 /* Delay function using SysTick interrupt */
 void delayMS(int n) {
-  /* Configure SysTick to generate 1ms delay
-   * Default clock is 16MHz HSI */
-  SysTick->LOAD = 16000 - 1;
-  SysTick->VAL = 0;
-  SysTick->CTRL = (SysTick_CTRL_CLKSOURCE_Msk |
-                   SysTick_CTRL_ENABLE_Msk); /* Enable SysTick, internal clock,
-                                                no interrupt */
-
-  for (int i = 0; i < n; i++) {
-    /* Wait until COUNTFLAG is set */
-    while ((SysTick->CTRL & SysTick_CTRL_COUNTFLAG_Msk) == 0)
-      ;
   uint32_t startTicks = msTicks;
   while ((msTicks - startTicks) < (uint32_t)n) {
 #ifdef __arm__
