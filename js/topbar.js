@@ -17,4 +17,6 @@ class TopBar extends HTMLElement {
   }
 }
 
-customElements.define('msme-topbar', TopBar);
+if (!customElements.get('msme-topbar')) {
+  customElements.define('msme-topbar', TopBar);
+}
