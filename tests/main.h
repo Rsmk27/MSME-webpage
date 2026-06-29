@@ -67,10 +67,14 @@ int HAL_GPIO_ReadPin(int GPIOx, int GPIO_Pin);
 // Mock macros
 #define __HAL_RCC_PWR_CLK_ENABLE()
 #define __HAL_PWR_VOLTAGESCALING_CONFIG(x)
-#define __HAL_RCC_GPIOC_CLK_ENABLE()
-#define __HAL_RCC_GPIOH_CLK_ENABLE()
-#define __HAL_RCC_GPIOA_CLK_ENABLE()
-#define __HAL_RCC_GPIOB_CLK_ENABLE()
+extern int rcc_gpioc_clk_enable_called;
+#define __HAL_RCC_GPIOC_CLK_ENABLE() rcc_gpioc_clk_enable_called++
+extern int rcc_gpioh_clk_enable_called;
+#define __HAL_RCC_GPIOH_CLK_ENABLE() rcc_gpioh_clk_enable_called++
+extern int rcc_gpioa_clk_enable_called;
+#define __HAL_RCC_GPIOA_CLK_ENABLE() rcc_gpioa_clk_enable_called++
+extern int rcc_gpiob_clk_enable_called;
+#define __HAL_RCC_GPIOB_CLK_ENABLE() rcc_gpiob_clk_enable_called++
 
 void __disable_irq(void);
 
