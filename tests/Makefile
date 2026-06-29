@@ -14,6 +14,9 @@ test:
 	sed 's/int main(void)/int original_main(void)/g' ../data/led_on_off_print_terminal.c | sed 's/while ((msTicks - startTicks) < (uint32_t)n)/while (mock_systick_check(n, startTicks))/g' | sed '1i #include <stdint.h>\nint mock_systick_check(int n, uint32_t startTicks);' > led_delay_tested.c
 	$(CC) $(CFLAGS) -o test_delay test_delay.c led_delay_tested.c
 	./test_delay
+	sed 's/int main(void)/int original_main(void)/g' ../data/led_on_off_print_terminal.c > led_systick_tested.c
+	$(CC) $(CFLAGS) -o test_systick_handler test_systick_handler.c led_systick_tested.c
+	./test_systick_handler
 
 clean:
-	rm -f test_user_switch user_switch_tested.c test_usart2 led_tested.c test_usart2_write led_write_tested.c test_delay led_delay_tested.c
+	rm -f test_user_switch user_switch_tested.c test_usart2 led_tested.c test_usart2_write led_write_tested.c test_delay led_delay_tested.c test_systick_handler led_systick_tested.c
