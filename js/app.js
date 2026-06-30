@@ -55,12 +55,10 @@ if (sidebar) {
      currentPath = 'index.html';
   }
 
-  const links = nav.querySelectorAll('a');
-  links.forEach(link => {
-    if (link.getAttribute('href') === currentPath) {
-      link.classList.add('active');
-    }
-  });
+  const activeLink = nav.querySelector(`a[href="${currentPath}"]`);
+  if (activeLink) {
+    activeLink.classList.add('active');
+  }
 
   sidebar.appendChild(nav);
 }
