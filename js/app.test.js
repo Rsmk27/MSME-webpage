@@ -2,10 +2,11 @@ describe('UI Interactions in app.js', () => {
   beforeEach(() => {
     document.body.innerHTML = `
       <div id="hamburger"></div>
-      <div id="sidebar"></div>
+      <msme-sidebar id="sidebar" class="sidebar"></msme-sidebar>
       <div id="overlay"></div>
     `;
     jest.resetModules();
+    require('./sidebar.js');
     require('./app.js');
   });
 
@@ -45,6 +46,7 @@ describe('UI Interactions in app.js', () => {
     document.body.innerHTML = '';
     expect(() => {
       jest.resetModules();
+      require('./sidebar.js');
       require('./app.js');
     }).not.toThrow();
   });
