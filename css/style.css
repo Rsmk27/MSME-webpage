@@ -760,3 +760,34 @@ code {
   outline-offset: 2px;
   border-radius: 4px;
 }
+
+/* ===== GALLERY ===== */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+}
+
+.gallery-item {
+  background: var(--card-bg);
+  padding: 1rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--card-border);
+  backdrop-filter: var(--glass-blur);
+  transition: transform 0.3s;
+  cursor: pointer;
+}
+
+.gallery-item img {
+  width: 100%;
+  border-radius: 8px;
+  margin-bottom: 0.5rem;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+}
+
+.gallery-item h4 {
+  color: #fff;
+  font-size: 0.95rem;
+}
