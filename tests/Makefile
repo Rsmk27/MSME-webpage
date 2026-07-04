@@ -18,5 +18,9 @@ test:
 	$(CC) $(CFLAGS) -o test_systick_handler test_systick_handler.c led_systick_tested.c
 	./test_systick_handler
 
+	sed 's/int main(void)/int original_main(void)/g' ../data/led_on_off_print_terminal.c > led_systick_tested.c
+	$(CC) $(CFLAGS) -o test_systick_init test_systick_init.c led_systick_tested.c
+	./test_systick_init
+
 clean:
 	rm -f test_user_switch user_switch_tested.c test_usart2 led_tested.c test_usart2_write led_write_tested.c test_delay led_delay_tested.c test_systick_handler led_systick_tested.c
