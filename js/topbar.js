@@ -1,6 +1,5 @@
-class TopBar extends HTMLElement {
-  connectedCallback() {
-    this.innerHTML = `
+const template = document.createElement('template');
+template.innerHTML = `
 <header class="topbar">
   <button class="hamburger" id="hamburger" aria-label="Toggle menu">&#9776;</button>
   <a href="index.html" class="topbar-logo">
@@ -13,8 +12,16 @@ class TopBar extends HTMLElement {
   <div class="topbar-spacer"></div>
   <span class="topbar-badge">&#127979; Workshop</span>
 </header>
-    `;
+`;
+
+class TopBar extends HTMLElement {
+  connectedCallback() {
+    if (!this.hasChildNodes()) {
+      this.appendChild(template.content.cloneNode(true));
+    }
   }
 }
 
-customElements.define('msme-topbar', TopBar);
+if (!customElements.get('msme-topbar')) {
+  customElements.define('msme-topbar', TopBar);
+}
