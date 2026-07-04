@@ -13,6 +13,23 @@ int mock_clock_config_return = HAL_OK;
 
 jmp_buf test_env;
 
+int rcc_gpioc_clk_enable_called = 0;
+int rcc_gpioh_clk_enable_called = 0;
+int rcc_gpioa_clk_enable_called = 0;
+int rcc_gpiob_clk_enable_called = 0;
+
+int hal_gpio_init_called = 0;
+int last_gpio_init_port = 0;
+GPIO_InitTypeDef last_gpio_init_struct;
+
+int nvic_set_priority_called = 0;
+int last_nvic_set_priority_irqn = -1;
+int last_nvic_set_priority_preempt = -1;
+int last_nvic_set_priority_sub = -1;
+
+int nvic_enable_irq_called = 0;
+int last_nvic_enable_irq_irqn = -1;
+
 // Mock __disable_irq
 void __disable_irq(void) { disable_irq_called = 1; }
 
@@ -23,7 +40,13 @@ int HAL_RCC_ClockConfig(RCC_ClkInitTypeDef *RCC_ClkInitStruct, int FLatency) {
   return mock_clock_config_return;
 }
 int HAL_USART_Init(USART_HandleTypeDef *husart) { return HAL_OK; }
-void HAL_GPIO_Init(int GPIOx, GPIO_InitTypeDef *GPIO_Init) {}
+
+void HAL_GPIO_Init(int GPIOx, GPIO_InitTypeDef *GPIO_Init) {
+  hal_gpio_init_called++;
+  last_gpio_init_port = GPIOx;
+  last_gpio_init_struct = *GPIO_Init;
+}
+
 
 void HAL_GPIO_WritePin(int GPIOx, int GPIO_Pin, int PinState) {
   write_pin_called++;
@@ -108,9 +131,54 @@ void test_systemclock_config(void) {
   printf("SystemClock_Config test passed!\n");
 }
 
+
+void test_mx_gpio_init(void) {
+  printf("Starting MX_GPIO_Init test...\n");
+
+  // Reset counters
+  rcc_gpioc_clk_enable_called = 0;
+  rcc_gpioh_clk_enable_called = 0;
+  rcc_gpioa_clk_enable_called = 0;
+  rcc_gpiob_clk_enable_called = 0;
+
+  hal_gpio_init_called = 0;
+  write_pin_called = 0;
+
+  nvic_set_priority_called = 0;
+  nvic_enable_irq_called = 0;
+
+  extern void MX_GPIO_Init(void);
+
+  MX_GPIO_Init();
+
+  // Assert clock enables
+  assert(rcc_gpioc_clk_enable_called == 1);
+  assert(rcc_gpioh_clk_enable_called == 1);
+  assert(rcc_gpioa_clk_enable_called == 1);
+  assert(rcc_gpiob_clk_enable_called == 1);
+
+  // Assert HAL_GPIO_WritePin called once for LD2_Pin (GPIO_PIN_RESET)
+  assert(write_pin_called >= 1);
+
+  // Assert HAL_GPIO_Init called twice (for PC13 and LD2_Pin)
+  assert(hal_gpio_init_called == 2);
+
+  // Assert NVIC calls
+  assert(nvic_set_priority_called == 1);
+  assert(last_nvic_set_priority_irqn == EXTI15_10_IRQn);
+  assert(last_nvic_set_priority_preempt == 0);
+  assert(last_nvic_set_priority_sub == 0);
+
+  assert(nvic_enable_irq_called == 1);
+  assert(last_nvic_enable_irq_irqn == EXTI15_10_IRQn);
+
+  printf("MX_GPIO_Init test passed!\n");
+}
+
 int main(void) {
   test_error_handler();
   test_systemclock_config();
+  test_mx_gpio_init();
   test_hal_gpio_exti_callback();
 
   printf("All user_switch tests passed!\n");
@@ -118,6 +186,18 @@ int main(void) {
 }
 
 void __WFI(void) {}
-void HAL_NVIC_SetPriority(int IRQn, int PreemptPriority, int SubPriority) {}
-void HAL_NVIC_EnableIRQ(int IRQn) {}
+
+void HAL_NVIC_SetPriority(int IRQn, int PreemptPriority, int SubPriority) {
+  nvic_set_priority_called++;
+  last_nvic_set_priority_irqn = IRQn;
+  last_nvic_set_priority_preempt = PreemptPriority;
+  last_nvic_set_priority_sub = SubPriority;
+}
+
+
+void HAL_NVIC_EnableIRQ(int IRQn) {
+  nvic_enable_irq_called++;
+  last_nvic_enable_irq_irqn = IRQn;
+}
+
 void HAL_GPIO_EXTI_IRQHandler(int GPIO_Pin) {}
