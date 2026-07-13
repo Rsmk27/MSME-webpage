@@ -5,7 +5,7 @@ const overlay   = document.getElementById('overlay');
 if (sidebar) {
   // Create the nav element
   const nav = document.createElement('nav');
-  nav.innerHTML = sidebarHTML;
+  nav.innerHTML = typeof sidebarHTML !== 'undefined' ? sidebarHTML : '';
 
   // Set active class based on current URL
   // In a real browser, window.location.pathname works, but in JSDOM testing it might be empty or 'blank'
@@ -18,10 +18,12 @@ if (sidebar) {
      currentPath = 'index.html';
   }
 
-  const activeLink = nav.querySelector(`a[href="${currentPath}"]`);
-  if (activeLink) {
-    activeLink.classList.add('active');
-  }
+  const links = nav.querySelectorAll('a');
+  links.forEach(link => {
+    if (link.getAttribute('href') === currentPath) {
+      link.classList.add('active');
+    }
+  });
 
   sidebar.appendChild(nav);
 }
