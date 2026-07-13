@@ -30,6 +30,10 @@ int last_nvic_set_priority_sub = -1;
 int nvic_enable_irq_called = 0;
 int last_nvic_enable_irq_irqn = -1;
 
+int hal_usart_init_called = 0;
+int mock_usart_init_return = HAL_OK;
+USART_HandleTypeDef last_usart_init_struct;
+
 // Mock __disable_irq
 void __disable_irq(void) { disable_irq_called = 1; }
 
@@ -39,7 +43,11 @@ int HAL_RCC_OscConfig(RCC_OscInitTypeDef *RCC_OscInitStruct) { return mock_osc_c
 int HAL_RCC_ClockConfig(RCC_ClkInitTypeDef *RCC_ClkInitStruct, int FLatency) {
   return mock_clock_config_return;
 }
-int HAL_USART_Init(USART_HandleTypeDef *husart) { return HAL_OK; }
+int HAL_USART_Init(USART_HandleTypeDef *husart) {
+  hal_usart_init_called++;
+  last_usart_init_struct = *husart;
+  return mock_usart_init_return;
+}
 
 void HAL_GPIO_Init(int GPIOx, GPIO_InitTypeDef *GPIO_Init) {
   hal_gpio_init_called++;
@@ -175,8 +183,54 @@ void test_mx_gpio_init(void) {
   printf("MX_GPIO_Init test passed!\n");
 }
 
+
+void test_mx_usart2_init(void) {
+  printf("Starting MX_USART2_Init test...\n");
+
+  extern void MX_USART2_Init(void);
+
+  // Happy path
+  hal_usart_init_called = 0;
+  mock_usart_init_return = HAL_OK;
+  disable_irq_called = 0;
+  loop_entered = 0;
+
+  MX_USART2_Init();
+
+  assert(hal_usart_init_called == 1);
+  assert(last_usart_init_struct.Instance == USART2);
+  assert(last_usart_init_struct.Init.BaudRate == 115200);
+  assert(last_usart_init_struct.Init.WordLength == USART_WORDLENGTH_8B);
+  assert(last_usart_init_struct.Init.StopBits == USART_STOPBITS_1);
+  assert(last_usart_init_struct.Init.Parity == USART_PARITY_NONE);
+  assert(last_usart_init_struct.Init.Mode == USART_MODE_TX_RX);
+  assert(last_usart_init_struct.Init.CLKPolarity == USART_POLARITY_LOW);
+  assert(last_usart_init_struct.Init.CLKPhase == USART_PHASE_1EDGE);
+  assert(last_usart_init_struct.Init.CLKLastBit == USART_LASTBIT_DISABLE);
+
+  assert(disable_irq_called == 0);
+  assert(loop_entered == 0);
+
+  // Error path
+  hal_usart_init_called = 0;
+  mock_usart_init_return = HAL_ERROR;
+  disable_irq_called = 0;
+  loop_entered = 0;
+
+  if (setjmp(test_env) == 0) {
+    MX_USART2_Init();
+  }
+
+  assert(hal_usart_init_called == 1);
+  assert(disable_irq_called == 1);
+  assert(loop_entered == 1);
+
+  printf("MX_USART2_Init test passed!\n");
+}
+
 int main(void) {
   test_error_handler();
+  test_mx_usart2_init();
   test_systemclock_config();
   test_mx_gpio_init();
   test_hal_gpio_exti_callback();

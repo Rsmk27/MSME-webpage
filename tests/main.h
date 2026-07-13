@@ -45,6 +45,9 @@ typedef struct {
     } Init;
 } USART_HandleTypeDef;
 
+extern USART_HandleTypeDef husart2;
+
+
 typedef struct {
     int Pin;
     int Mode;
