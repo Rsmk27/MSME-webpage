@@ -6,6 +6,7 @@ describe('UI Interactions in app.js', () => {
       <div id="overlay"></div>
     `;
     jest.resetModules();
+    global.sidebarHTML = '';
     require('./sidebar.js');
     require('./app.js');
   });
