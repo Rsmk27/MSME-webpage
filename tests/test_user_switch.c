@@ -10,6 +10,7 @@ int read_pin_called = 0;
 int write_pin_called = 0;
 int mock_osc_config_return = HAL_OK;
 int mock_clock_config_return = HAL_OK;
+int mock_usart_init_return = HAL_OK;
 
 jmp_buf test_env;
 
@@ -39,7 +40,7 @@ int HAL_RCC_OscConfig(RCC_OscInitTypeDef *RCC_OscInitStruct) { return mock_osc_c
 int HAL_RCC_ClockConfig(RCC_ClkInitTypeDef *RCC_ClkInitStruct, int FLatency) {
   return mock_clock_config_return;
 }
-int HAL_USART_Init(USART_HandleTypeDef *husart) { return HAL_OK; }
+int HAL_USART_Init(USART_HandleTypeDef *husart) { return mock_usart_init_return; }
 
 void HAL_GPIO_Init(int GPIOx, GPIO_InitTypeDef *GPIO_Init) {
   hal_gpio_init_called++;
@@ -132,6 +133,32 @@ void test_systemclock_config(void) {
 }
 
 
+
+void test_mx_usart2_init(void) {
+  printf("Starting MX_USART2_Init test...\n");
+  extern void MX_USART2_Init(void);
+
+  // Happy path
+  mock_usart_init_return = HAL_OK;
+  disable_irq_called = 0;
+  loop_entered = 0;
+  MX_USART2_Init();
+  assert(disable_irq_called == 0);
+  assert(loop_entered == 0);
+
+  // Error path
+  mock_usart_init_return = HAL_ERROR;
+  disable_irq_called = 0;
+  loop_entered = 0;
+  if (setjmp(test_env) == 0) {
+    MX_USART2_Init();
+  }
+  assert(disable_irq_called == 1);
+  assert(loop_entered == 1);
+
+  printf("MX_USART2_Init test passed!\n");
+}
+
 void test_mx_gpio_init(void) {
   printf("Starting MX_GPIO_Init test...\n");
 
@@ -180,6 +207,7 @@ int main(void) {
   test_systemclock_config();
   test_mx_gpio_init();
   test_hal_gpio_exti_callback();
+  test_mx_usart2_init();
 
   printf("All user_switch tests passed!\n");
   return 0;
