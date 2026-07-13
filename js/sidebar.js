@@ -48,12 +48,10 @@ class Sidebar extends HTMLElement {
        currentPath = 'index.html';
     }
 
-    const links = this.querySelectorAll('a');
-    links.forEach(link => {
-      if (link.getAttribute('href') === currentPath) {
-        link.classList.add('active');
-      }
-    });
+    const activeLink = this.querySelector(`a[href="${currentPath}"]`);
+    if (activeLink) {
+      activeLink.classList.add('active');
+    }
   }
 }
 

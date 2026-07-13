@@ -5,7 +5,9 @@ const overlay   = document.getElementById('overlay');
 if (sidebar) {
   // Create the nav element
   const nav = document.createElement('nav');
-  nav.innerHTML = sidebarHTML;
+  if (typeof sidebarHTML !== 'undefined') {
+    nav.innerHTML = sidebarHTML;
+  }
 
   // Set active class based on current URL
   // In a real browser, window.location.pathname works, but in JSDOM testing it might be empty or 'blank'
