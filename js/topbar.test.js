@@ -48,3 +48,39 @@ describe('TopBar Custom Element', () => {
     expect(badge.textContent).toContain('Workshop');
   });
 });
+
+describe('Custom Element Registration', () => {
+  let originalGet;
+  let originalDefine;
+
+  beforeEach(() => {
+    originalGet = customElements.get;
+    originalDefine = customElements.define;
+    jest.resetModules();
+  });
+
+  afterEach(() => {
+    customElements.get = originalGet;
+    customElements.define = originalDefine;
+  });
+
+  it('defines msme-topbar if not already defined', () => {
+    customElements.get = jest.fn().mockReturnValue(undefined);
+    customElements.define = jest.fn();
+
+    require('./topbar.js');
+
+    expect(customElements.get).toHaveBeenCalledWith('msme-topbar');
+    expect(customElements.define).toHaveBeenCalledWith('msme-topbar', expect.any(Function));
+  });
+
+  it('does not define msme-topbar if already defined', () => {
+    customElements.get = jest.fn().mockReturnValue(class {});
+    customElements.define = jest.fn();
+
+    require('./topbar.js');
+
+    expect(customElements.get).toHaveBeenCalledWith('msme-topbar');
+    expect(customElements.define).not.toHaveBeenCalled();
+  });
+});
