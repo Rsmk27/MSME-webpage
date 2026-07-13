@@ -47,4 +47,18 @@ describe('TopBar Custom Element', () => {
     expect(badge).not.toBeNull();
     expect(badge.textContent).toContain('Workshop');
   });
+
+  it('does not append clone if already has child nodes', () => {
+    // Note: beforeEach already resets the DOM and requires the module, so the custom element is registered.
+    // We clear the DOM to start fresh for this specific test case.
+    document.body.innerHTML = '';
+
+    const topbar = document.createElement('msme-topbar');
+    topbar.innerHTML = '<div id="existing-child">Existing Child</div>';
+    document.body.appendChild(topbar); // connectedCallback fires here
+
+    expect(topbar.querySelector('#existing-child')).not.toBeNull();
+    expect(topbar.querySelector('header.topbar')).toBeNull();
+  });
+
 });
