@@ -8,6 +8,7 @@ describe('UI Interactions in app.js', () => {
     jest.resetModules();
     global.sidebarHTML = '';
     require('./sidebar.js');
+    global.sidebarHTML = '<div></div>';
     require('./app.js');
   });
 
