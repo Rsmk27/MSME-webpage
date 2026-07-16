@@ -47,4 +47,54 @@ describe('TopBar Custom Element', () => {
     expect(badge).not.toBeNull();
     expect(badge.textContent).toContain('Workshop');
   });
+
+  it('does not append clone if already has child nodes', () => {
+    // Note: beforeEach already resets the DOM and requires the module, so the custom element is registered.
+    // We clear the DOM to start fresh for this specific test case.
+    document.body.innerHTML = '';
+
+    const topbar = document.createElement('msme-topbar');
+    topbar.innerHTML = '<div id="existing-child">Existing Child</div>';
+    document.body.appendChild(topbar); // connectedCallback fires here
+
+    expect(topbar.querySelector('#existing-child')).not.toBeNull();
+    expect(topbar.querySelector('header.topbar')).toBeNull();
+  });
+
+});
+
+describe('Custom Element Registration', () => {
+  let originalGet;
+  let originalDefine;
+
+  beforeEach(() => {
+    originalGet = customElements.get;
+    originalDefine = customElements.define;
+    jest.resetModules();
+  });
+
+  afterEach(() => {
+    customElements.get = originalGet;
+    customElements.define = originalDefine;
+  });
+
+  it('defines msme-topbar if not already defined', () => {
+    customElements.get = jest.fn().mockReturnValue(undefined);
+    customElements.define = jest.fn();
+
+    require('./topbar.js');
+
+    expect(customElements.get).toHaveBeenCalledWith('msme-topbar');
+    expect(customElements.define).toHaveBeenCalledWith('msme-topbar', expect.any(Function));
+  });
+
+  it('does not define msme-topbar if already defined', () => {
+    customElements.get = jest.fn().mockReturnValue(class {});
+    customElements.define = jest.fn();
+
+    require('./topbar.js');
+
+    expect(customElements.get).toHaveBeenCalledWith('msme-topbar');
+    expect(customElements.define).not.toHaveBeenCalled();
+  });
 });
