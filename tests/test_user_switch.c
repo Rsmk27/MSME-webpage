@@ -4,6 +4,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+
+int exti_irq_handler_called = 0;
+int exti_irq_handler_pin = 0;
 int disable_irq_called = 0;
 int loop_entered = 0;
 int read_pin_called = 0;
@@ -202,6 +205,20 @@ void test_mx_gpio_init(void) {
   printf("MX_GPIO_Init test passed!\n");
 }
 
+void test_exti15_10_irq_handler(void) {
+  printf("Starting EXTI15_10_IRQHandler test...\n");
+  exti_irq_handler_called = 0;
+  exti_irq_handler_pin = 0;
+
+  extern void EXTI15_10_IRQHandler(void);
+  EXTI15_10_IRQHandler();
+
+  assert(exti_irq_handler_called == 1);
+  assert(exti_irq_handler_pin == GPIO_PIN_13);
+
+  printf("EXTI15_10_IRQHandler test passed!\n");
+}
+
 int main(void) {
   test_error_handler();
   test_systemclock_config();
@@ -228,4 +245,7 @@ void HAL_NVIC_EnableIRQ(int IRQn) {
   last_nvic_enable_irq_irqn = IRQn;
 }
 
-void HAL_GPIO_EXTI_IRQHandler(int GPIO_Pin) {}
+void HAL_GPIO_EXTI_IRQHandler(int GPIO_Pin) {
+  exti_irq_handler_called++;
+  exti_irq_handler_pin = GPIO_Pin;
+}
