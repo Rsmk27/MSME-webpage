@@ -219,8 +219,16 @@ void test_exti15_10_irq_handler(void) {
   printf("EXTI15_10_IRQHandler test passed!\n");
 }
 
+void test_assert_failed(void) {
+  printf("Starting assert_failed test...\n");
+  extern void assert_failed(uint8_t *file, uint32_t line);
+  assert_failed((uint8_t *)"test.c", 42);
+  printf("assert_failed test passed!\n");
+}
+
 int main(void) {
   test_error_handler();
+  test_assert_failed();
   test_systemclock_config();
   test_mx_gpio_init();
   test_hal_gpio_exti_callback();

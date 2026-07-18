@@ -1,5 +1,5 @@
 CC=gcc
-CFLAGS=-I.
+CFLAGS=-I. -DUSE_FULL_ASSERT
 
 test:
 	sed 's/while (1)/if (1) { loop_entered = 1; longjmp(test_env, 1); } while (0)/g' ../data/user_switch.c | sed 's/int main/int original_main/g' | sed 's/static void MX_GPIO_Init/void MX_GPIO_Init/g' | sed 's/static void MX_USART2_Init/void MX_USART2_Init/g' > user_switch_tested.c
