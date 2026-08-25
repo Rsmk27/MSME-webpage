@@ -219,7 +219,34 @@ void test_exti15_10_irq_handler(void) {
   printf("EXTI15_10_IRQHandler test passed!\n");
 }
 
+void test_usart2_init_error_handler_verification(void) {
+  printf("Starting MX_USART2_Init Error_Handler verification...\n");
+  extern void MX_USART2_Init(void);
+
+  // Verification: Happy path does not trigger Error_Handler
+  mock_usart_init_return = HAL_OK;
+  disable_irq_called = 0;
+  loop_entered = 0;
+  MX_USART2_Init();
+  assert(disable_irq_called == 0);
+  assert(loop_entered == 0);
+
+  // Verification: Error path triggers Error_Handler
+  mock_usart_init_return = HAL_ERROR;
+  disable_irq_called = 0;
+  loop_entered = 0;
+  if (setjmp(test_env) == 0) {
+    MX_USART2_Init();
+  }
+  assert(disable_irq_called == 1);
+  assert(loop_entered == 1);
+
+  printf("MX_USART2_Init Error_Handler verification passed!\n");
+}
+
 int main(void) {
+  test_usart2_init_error_handler_verification();
+
   test_error_handler();
   test_systemclock_config();
   test_mx_gpio_init();
